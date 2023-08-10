@@ -28,3 +28,6 @@ build
 
 # Miscellaneous
 *.local
+
+# Local Netlify folder
+.netlify
