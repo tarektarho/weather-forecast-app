@@ -17,25 +17,8 @@ describe("Utils", () => {
 
   describe("getHour", () => {
     it("returns the hour of a date-time unix timestamp datetime value", () => {
-      const expectedHour = "10:43:42 PM"
-
-      // Set the locale and time zone explicitly for consistent behavior
-      const originalLocale = Intl.DateTimeFormat().resolvedOptions().locale
-      const originalTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
-
-      try {
-        // Set the locale and time zone for the test
-        Intl.DateTimeFormat().resolvedOptions().locale = "en-US" // Set the desired locale
-        Intl.DateTimeFormat().resolvedOptions().timeZone = "en-US" // Set the desired time zone
-
-        const result = Utils.getHour(unix_date)
-
-        expect(result).toEqual(expectedHour)
-      } finally {
-        // Restore the original locale and time zone settings
-        Intl.DateTimeFormat().resolvedOptions().locale = originalLocale
-        Intl.DateTimeFormat().resolvedOptions().timeZone = originalTimeZone
-      }
+      const result = Utils.getHour(unix_date)
+      expect(result).toEqual("10:43:42 PM")
     })
   })
 

@@ -9,7 +9,9 @@ import {
 export const getDay = (date: number): number => new Date(date * 1000).getDate()
 
 export const getHour = (date: number): string =>
-  new Date(date * 1000).toLocaleTimeString("en-US")
+  new Date(date * 1000).toLocaleTimeString("en-US", {
+    timeZone: "Europe/Amsterdam",
+  })
 
 export const getMonth = (date: number): string => {
   return new Date(date * 1000).toLocaleString("default", { month: "short" })
