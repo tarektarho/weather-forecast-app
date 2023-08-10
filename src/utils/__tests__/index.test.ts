@@ -1,8 +1,8 @@
 import * as Utils from "../index"
 
 describe("Utils", () => {
-  // Fri Oct 14 2022 23:57:50 GMT-0400 (Eastern Daylight Time)
-  const unix_date = 1665806270
+  // Thu Aug 10 2023 22:43:42 GMT+0200 (Central European Summer Time)
+  const unix_date = 1691700222
 
   afterAll(() => {
     localStorage.clear()
@@ -11,21 +11,21 @@ describe("Utils", () => {
   describe("getDay", () => {
     it("returns the day of the month from a unix timestamp datetime", () => {
       const result = Utils.getDay(unix_date)
-      expect(result).toEqual(15)
+      expect(result).toEqual(10)
     })
   })
 
   describe("getHour", () => {
     it("returns the hour of a date-time unix timestamp datetime value", () => {
       const result = Utils.getHour(unix_date)
-      expect(result).toEqual("5:57:50 AM")
+      expect(result).toEqual("10:43:42 PM")
     })
   })
 
   describe("getMonth", () => {
     it("returns the month from the unix timestamp value", () => {
       const result = Utils.getMonth(unix_date)
-      expect(result).toEqual("Oct")
+      expect(result).toEqual("Aug")
     })
   })
 
