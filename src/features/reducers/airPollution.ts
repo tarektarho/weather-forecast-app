@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { getAirPollutionByLatLon } from "../thunks/airPollution"
-import AirPollutionData from "../../types/airPollutionTypes"
+import AirPollutionData from "../../types/airPollution"
 
 // Define the state structure for the airPollution slice
 interface airPollutionState {

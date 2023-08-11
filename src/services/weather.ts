@@ -3,7 +3,7 @@ import {
   ERROR_INVALID_LAT_LON,
   ERROR_INVALID_CITY,
 } from "../utils/constants"
-import WeatherData from "../types/weatherTypes"
+import WeatherData from "../types/weather"
 import { fetchData } from "./common"
 
 /**

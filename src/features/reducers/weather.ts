@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { getWeatherByCity, getWeatherByLatLon } from "../thunks/weather"
-import WeatherData from "../../types/weatherTypes"
+import WeatherData from "../../types/weather"
 
 // Define the state structure for the weather slice
 interface WeatherState {

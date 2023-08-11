@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { getForecastByCity, getForecastByLatLon } from "../thunks/forecast"
-import ForecastData from "../../types/forecastTypes"
+import ForecastData from "../../types/forecast"
 
 // Define the state structure for the forecast slice
 interface ForecaseState {

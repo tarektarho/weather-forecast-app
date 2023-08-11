@@ -2,7 +2,7 @@ import React from "react"
 import { useWeather } from "../../providers/weatherContext"
 import DailyDetail from "./DailyDetail"
 import Loader from "../common/Loader"
-import ForecastData from "../../types/forecastTypes"
+import ForecastData from "../../types/forecast"
 
 const DailyWidget: React.FC = () => {
   // Retrieve forecast data from the weather context

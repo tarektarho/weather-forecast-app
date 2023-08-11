@@ -1,5 +1,5 @@
 import { fetchData } from "./common"
-import ForecastData from "../types/forecastTypes"
+import ForecastData from "../types/forecast"
 import {
   ERROR_INVALID_LAT_LON,
   ERROR_INVALID_CITY,

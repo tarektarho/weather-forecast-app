@@ -1,5 +1,5 @@
 import React from "react"
-import ForecastItem from "../../types/forecastTypes"
+import ForecastItem from "../../types/forecast"
 import {
   convertKelvinToCelsius,
   getDay,

@@ -3,7 +3,7 @@ import {
   ERROR_INVALID_LAT_LON,
 } from "../../utils/constants"
 import { getForecastByLatLon, getForecastByCity } from "../forecast"
-import ForecastData from "../../types/forecastTypes"
+import ForecastData from "../../types/forecast"
 
 export const forecastServiceMockedResponse = {
   cod: "200",

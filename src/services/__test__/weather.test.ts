@@ -3,7 +3,7 @@ import {
   ERROR_INVALID_LAT_LON,
 } from "../../utils/constants"
 import { getWeatherByLatLon, getWeatherByCity } from "../weather"
-import WeatherData from "../../types/weatherTypes"
+import WeatherData from "../../types/weather"
 
 export const weatherServiceMockedResponse: WeatherData = {
   base: "stations",

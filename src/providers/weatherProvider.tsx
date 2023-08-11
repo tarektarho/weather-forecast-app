@@ -7,10 +7,10 @@ import * as AirPollutionThunkActions from "../features/thunks/airPollution"
 import * as WeatherActions from "../features/reducers/weather"
 import * as Constants from "../utils/constants"
 import * as Utils from "../utils/index"
-import WeatherData from "../types/weatherTypes"
+import WeatherData from "../types/weather"
 import { Coordinates } from "../features/thunks/types"
-import AirPollutionData from "../types/airPollutionTypes"
-import ForecastData from "../types/forecastTypes"
+import AirPollutionData from "../types/airPollution"
+import ForecastData from "../types/forecast"
 import { Dispatch } from "redux"
 
 interface WeatherProviderProps {

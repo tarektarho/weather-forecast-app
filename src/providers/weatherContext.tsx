@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react"
-import WeatherData from "../types/weatherTypes"
-import ForecastData from "../types/forecastTypes"
-import AirPollutionData from "../types/airPollutionTypes"
+import WeatherData from "../types/weather"
+import ForecastData from "../types/forecast"
+import AirPollutionData from "../types/airPollution"
 
 /**
  * Interface defining the shape of the context value used in the WeatherProvider.

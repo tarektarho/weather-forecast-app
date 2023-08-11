@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import DailyDetail from "../DailyDetail"
-import ForecastData from "../../../types/forecastTypes"
+import ForecastData from "../../../types/forecast"
 
 interface ForecastMockedData extends ForecastData {
   ForecastItem: {
