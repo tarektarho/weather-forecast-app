@@ -20,6 +20,7 @@ export interface WeatherContextValue {
   hideError: () => void
   info: string | undefined
   setInfo: React.Dispatch<React.SetStateAction<string | undefined>>
+  setError: React.Dispatch<React.SetStateAction<any>>
 }
 
 /**

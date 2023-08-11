@@ -49,7 +49,7 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
   // Hide error notification and clear Redux error state
   const hideError = () => {
     setError(undefined)
-    dispatch(WeatherActions.setError(""))
+    dispatch(WeatherActions.setError(false))
   }
 
   // Get user's geographic position
@@ -134,6 +134,7 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
     forecastData,
     searchByCity,
     copyShareUrl,
+    setError,
   }
 
   // Provide context to children components

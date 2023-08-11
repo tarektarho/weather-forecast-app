@@ -17,7 +17,7 @@ describe("weatherReducer", () => {
     await store.dispatch(getWeatherByLatLon({ lat: 1, lon: 1 }))
     expect(store.getState()).toEqual({
       loading: false,
-      error: "",
+      error: undefined,
       data: { ...weatherServiceMockedResponse },
     })
   })
@@ -45,7 +45,7 @@ it("should post data fulfilled with city", async () => {
   await store.dispatch(getWeatherByCity({ city: "Miami" }))
   expect(store.getState()).toEqual({
     loading: false,
-    error: "",
+    error: undefined,
     data: { ...weatherServiceMockedResponse },
   })
 })

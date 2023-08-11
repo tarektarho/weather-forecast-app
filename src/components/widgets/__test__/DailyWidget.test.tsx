@@ -8,7 +8,7 @@ import DailyWidget from "../DailyWidget"
 import { SetStateAction } from "react"
 
 interface WeatherContextMockedValue extends WeatherContextValue {}
-const weatherContextMockedData = {
+export const weatherContextMockedData = {
   forecastData: {
     loading: true,
     data: {},
@@ -25,6 +25,7 @@ const weatherContextMockedData = {
   hideError: (): void => {},
   info: undefined,
   setInfo: (value: SetStateAction<string | undefined>): void => {},
+  setError: (value: SetStateAction<string | boolean | undefined>): void => {},
 }
 
 describe("DailyWidget", () => {

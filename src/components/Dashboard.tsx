@@ -9,6 +9,7 @@ import AirPollutionWidget from "./widgets/AirPollutionWidget"
 import Notification from "./Notification"
 import Search from "./Search"
 import Modal from "./Modal"
+import { getLocalStorageItem } from "../utils"
 
 const Dashboard: React.FC = () => {
   // Fetch necessary data and functions from the WeatherContext
@@ -48,7 +49,7 @@ const Dashboard: React.FC = () => {
       return
     }
 
-    const welcomeModal = localStorage.getItem(LOCAL_STORAGE_KEY_WELCOME_MODAL)
+    const welcomeModal = getLocalStorageItem(LOCAL_STORAGE_KEY_WELCOME_MODAL)
     if (!welcomeModal) {
       return <Modal hideModal={hideModal} />
     }

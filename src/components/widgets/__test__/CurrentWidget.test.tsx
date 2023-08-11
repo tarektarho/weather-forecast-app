@@ -4,28 +4,10 @@ import {
   WeatherContext,
   WeatherContextValue,
 } from "../../../providers/weatherContext"
-import { SetStateAction } from "react"
 import CurrentWidget from "../CurrentWidget"
+import { weatherContextMockedData } from "./DailyWidget.test"
 
 interface WeatherContextMockedValue extends WeatherContextValue {}
-const weatherContextMockedData = {
-  weatherData: {
-    loading: true,
-    data: {},
-  },
-  city: "",
-  setCity: (value: SetStateAction<string>): void => {},
-  searchByCity: (): void => {},
-  forecastData: undefined,
-  airPollutionData: undefined,
-  copyShareUrl: (): void => {},
-  modal: false,
-  hideModal: (): void => {},
-  error: undefined,
-  hideError: (): void => {},
-  info: undefined,
-  setInfo: (value: SetStateAction<string | undefined>): void => {},
-}
 
 describe("CurrentWidget", () => {
   const contextValueMocked: WeatherContextMockedValue = weatherContextMockedData

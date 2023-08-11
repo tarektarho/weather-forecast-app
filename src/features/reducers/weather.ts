@@ -5,7 +5,7 @@ import WeatherData from "../../types/weatherTypes"
 // Define the state structure for the weather slice
 interface WeatherState {
   loading: boolean // Indicates if weather data is currently being loaded
-  error?: string // Holds any error message related to fetching weather data
+  error: string | undefined | boolean // Holds any error message related to fetching weather data
   data: WeatherData | {} // Holds the fetched weather data or an empty object
 }
 
@@ -17,7 +17,7 @@ interface RejectedActionPayload {
 // Define the initial state for the weather slice
 const initialState: WeatherState = {
   loading: false,
-  error: "",
+  error: undefined,
   data: {},
 }
 
@@ -27,15 +27,15 @@ export const weatherSlice = createSlice({
   initialState,
   reducers: {
     // Reducer to set an error message in the state
-    setError: (state, action: PayloadAction<string>) => {
-      state.error = action.payload
+    setError: (state, action: PayloadAction<boolean>) => {
+      state.error = Boolean(action.payload)
     },
   },
   extraReducers: (builder) => {
     builder
       // Extra reducers for handling thunks' pending, fulfilled, and rejected states
       .addCase(getWeatherByLatLon.pending, (state) => {
-        state.error = "" // Clear any previous error message
+        state.error = undefined // Clear any previous error message
         state.loading = true // Set loading flag to indicate data fetching
       })
       .addCase(getWeatherByLatLon.fulfilled, (state, action) => {
@@ -48,7 +48,7 @@ export const weatherSlice = createSlice({
         state.loading = false // Turn off loading flag
       })
       .addCase(getWeatherByCity.pending, (state) => {
-        state.error = "" // Clear any previous error message
+        state.error = undefined // Clear any previous error message
         state.loading = true // Set loading flag to indicate data fetching
       })
       .addCase(getWeatherByCity.fulfilled, (state, action) => {
