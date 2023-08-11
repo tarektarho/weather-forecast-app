@@ -70,6 +70,6 @@ describe("DailyWidget", () => {
     })
     const title = screen.getByTestId("daily-widget-title")
     expect(title).toBeVisible()
-    expect(title).toHaveTextContent("Forecast next 7 days")
+    expect(title).toHaveTextContent("Forecast next 5 days")
   })
 })

@@ -22,16 +22,14 @@ const DailyWidget: React.FC = () => {
   return (
     <>
       <h3 className="widget-title" data-testid="daily-widget-title">
-        Forecast next 7 days
+        Forecast next 5 days
       </h3>
       <div className="daily-container">
         <div className="daily-wrapper">
           {forecastList &&
-            forecastList
-              .slice(0, 7)
-              .map((item: ForecastData["list"]) => (
-                <DailyDetail key={item.dt} data={item} />
-              ))}
+            forecastList.map((item: ForecastData["list"]) => (
+              <DailyDetail key={item.dt} data={item} />
+            ))}
         </div>
       </div>
     </>
