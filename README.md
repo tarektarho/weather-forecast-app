@@ -60,11 +60,10 @@ The application empowers users to search for weather forecasts in various cities
   ```sh
   npm run test
   ```
-![Screenshot 2023-08-11 at 17 33 42](https://github.com/tarektarho/weather-forecast-app/assets/18512695/9cee7be4-8d41-45bb-8631-d2c18d332901)
-
 
 - Coverage:
-  
+   ![Screenshot 2023-08-11 at 17 33 42](https://github.com/tarektarho/weather-forecast-app/assets/18512695/a9a26811-9be8-41de-b556-502709b4baa0)
+
 
 ## Inspiration
 
