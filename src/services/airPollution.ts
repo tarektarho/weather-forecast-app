@@ -1,6 +1,6 @@
 import { ERROR_INVALID_LAT_LON, BASE_URL_WEATHER } from "../utils/constants"
 import { fetchData } from "./common"
-import AirPollutionData from "../types/airPollution"
+import AirPollutionData from "../types/airPollutionTypes"
 
 /**
  * Fetches air pollution data for a specific latitude and longitude.

@@ -500,6 +500,10 @@
   .flex-wrap {
     justify-content: center;
   }
+
+  .modal-button {
+    justify-content: center;
+  }
 }
 
 /* TABLET */
@@ -587,6 +591,10 @@
   .modal-content {
     flex-direction: row;
   }
+
+  .modal-button {
+    justify-content: center;
+  }
 }
 
 /* DESKTOP */
@@ -635,5 +643,9 @@
 
   .modal-wrapper {
     top: 50%;
+  }
+
+  .modal-button {
+    justify-content: center;
   }
 }

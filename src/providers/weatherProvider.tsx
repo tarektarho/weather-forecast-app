@@ -9,7 +9,7 @@ import * as Constants from "../utils/constants"
 import * as Utils from "../utils/index"
 import WeatherData from "../types/weatherTypes"
 import { Coordinates } from "../features/thunks/types"
-import AirPollutionData from "../types/airPollution"
+import AirPollutionData from "../types/airPollutionTypes"
 import ForecastData from "../types/forecastTypes"
 import { Dispatch } from "redux"
 
