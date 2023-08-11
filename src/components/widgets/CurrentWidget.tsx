@@ -2,7 +2,7 @@ import React from "react"
 import { useWeather } from "../../providers/weatherContext"
 import { getWeatherIcon, resetApp, convertKelvinToCelsius } from "../../utils"
 import Loader from "../common/Loader"
-import shareIcon from "../../assets/images/share-icon.png"
+import shareIcon from "../../assets/images/share.png"
 import resetIcon from "../../assets/images/reset.png"
 
 const CurrentWidget: React.FC = () => {
