@@ -12,7 +12,7 @@ The app was build with [Vite](https://vitejs.dev/), [Vitest](https://vitest.dev/
 The application empowers users to search for weather forecasts in various cities and access detailed weather information.
 
 
-![weather-forecast-app](https://github.com/tarektarho/weather-forecast-app/assets/18512695/a8e7097a-118f-401e-b683-31f9d11484bf)
+![weather-forecast-app](https://github.com/tarektarho/weather-forecast-app/assets/18512695/890af764-a13f-4dc4-adc4-c456785029b7)
 
 
 
@@ -60,11 +60,10 @@ The application empowers users to search for weather forecasts in various cities
   ```sh
   npm run test
   ```
-![Screenshot 2023-08-11 at 17 33 42](https://github.com/tarektarho/weather-forecast-app/assets/18512695/9cee7be4-8d41-45bb-8631-d2c18d332901)
-
 
 - Coverage:
-  
+   ![Screenshot 2023-08-11 at 17 33 42](https://github.com/tarektarho/weather-forecast-app/assets/18512695/a9a26811-9be8-41de-b556-502709b4baa0)
+
 
 ## Inspiration
 
