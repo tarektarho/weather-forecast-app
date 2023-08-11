@@ -1,28 +1,33 @@
 import { API_KEY, STATUS_OK } from "../utils/constants"
 
-// Function to fetch data using provided URL and parameters
+/**
+ * Fetches data from a specified URL with provided parameters.
+ *
+ * @param url - The base URL to fetch data from.
+ * @param params - The query parameters to include in the URL.
+ * @returns A Promise containing the fetched data as JSON response.
+ * @throws An error if the fetch or parsing process encounters an issue.
+ */
 export const fetchData = async (url: string, params: string): Promise<any> => {
-  // Construct the full URL with API key
+  // Construct the full URL with API key and parameters
   const fullUrl = `${url}?${params}&appid=${API_KEY}`
 
   try {
     // Fetch data from the constructed URL
     const response = await fetch(fullUrl)
 
-    // Check if the response status is 200 (OK)
+    // Parse JSON response regardless of status
+    const responseData = await response.json()
+
+    // Check if the response status is 200 (OK) and return parsed data
     if (response.status === STATUS_OK) {
-      // If OK, parse the JSON response and return it
-      return await response.json()
+      return responseData
     }
 
-    if (!response.status) {
-      return response.json()
-    }
-
-    // If the status is not 200, parse the JSON response and throw it as an error
-    throw await response.json()
+    // If status is not 200, throw error with parsed response data
+    throw responseData
   } catch (error) {
-    // Catch any errors that occur during the fetch or parsing process
+    // Throw an error with the caught error message
     throw error
   }
 }
