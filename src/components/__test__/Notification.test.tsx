@@ -12,7 +12,6 @@ import { weatherServiceMockedResponse } from "../../services/__test__/weather.te
 import { forecastServiceMockedResponse } from "../../services/__test__/forecast.test"
 import { fetchAirPolutionMockedResponse } from "../../services/__test__/airPollution.test"
 import { WeatherProviderProps } from "./Dashboard.test"
-import AirPollutionData from "../../types/airPollution"
 
 describe("Notification", () => {
   const wrapper: React.FC<WeatherProviderProps> = ({ children }) => {
