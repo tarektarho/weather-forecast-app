@@ -3,8 +3,9 @@ import {
   ERROR_INVALID_LAT_LON,
 } from "../../utils/constants"
 import { getWeatherByLatLon, getWeatherByCity } from "../weather"
+import WeatherData from "../../types/weatherTypes"
 
-export const weatherServiceMockedResponse = {
+export const weatherServiceMockedResponse: WeatherData = {
   base: "stations",
   clouds: {
     all: 66,
@@ -41,7 +42,7 @@ export const weatherServiceMockedResponse = {
       id: 803,
       main: "Clouds",
     },
-  ],
+  ] as any,
   wind: {
     deg: 219,
     gust: 1.34,

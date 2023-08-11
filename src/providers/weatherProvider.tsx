@@ -28,7 +28,6 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
   const forecastData = useSelector(
     (state: { forecast: ForecastData }) => state.forecast,
   )
-
   const airPollutionData = useSelector(
     (state: { airPollution: AirPollutionData }) => state.airPollution,
   )
@@ -41,18 +40,21 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
   const [lat, setLat] = useState<number | undefined>(undefined)
   const [lon, setLon] = useState<number | undefined>(undefined)
 
+  // Hide welcome modal and save to local storage
   const hideModal = () => {
     setModal((prevState) => !prevState)
     Utils.setLocalStorageItem(Constants.LOCAL_STORAGE_KEY_WELCOME_MODAL, true)
   }
 
+  // Hide error notification and clear Redux error state
   const hideError = () => {
     setError(undefined)
     dispatch(WeatherActions.setError(""))
   }
 
+  // Get user's geographic position
   const getGeoPositon = async () => {
-    // A someone is sharing the link we get the lat & lon from URL
+    // Check if lat & lon are present in the URL
     if (
       Utils.getURLParam(Constants.URL_PARAM_LAT) &&
       Utils.getURLParam(Constants.URL_PARAM_LON)
@@ -62,6 +64,7 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
       return
     }
 
+    // Check if position is stored in local storage
     const positionLocalStorage = Utils.getLocalStorageItem(
       Constants.LOCAL_STORAGE_KEY_GPS_POSITION,
     )
@@ -86,6 +89,7 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
     getGeoPositon()
   }, [])
 
+  // Fetch data on lat and lon change
   useEffect(() => {
     if (lat !== undefined && lon !== undefined) {
       const coordinates: Coordinates = { lat, lon }
@@ -95,6 +99,7 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
     }
   }, [dispatch, lat, lon])
 
+  // Search weather and forecast data by city name
   const searchByCity = () => {
     if (city && city !== "") {
       dispatch(WeatherThunkActions.getWeatherByCity({ city }))
@@ -102,12 +107,14 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
     }
   }
 
+  // Copy and share URL
   const copyShareUrl = () => {
     Utils.placeLinkIntoClipBoard().then(() => {
       setInfo(Constants.MESSAGE_URL_COPIED)
     })
   }
 
+  // Context value for WeatherContext
   const contextValue = {
     dispatch,
     error,
@@ -129,6 +136,7 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
     copyShareUrl,
   }
 
+  // Provide context to children components
   return (
     <WeatherContext.Provider value={contextValue}>
       {children}

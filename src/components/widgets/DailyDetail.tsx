@@ -13,11 +13,14 @@ interface DailyDetailProps {
 }
 
 const DailyDetail: React.FC<DailyDetailProps> = ({ data }) => {
+  // Check if data is available, if not, return null
   if (!data) {
     return null
   }
 
+  // Destructure relevant properties from the data
   const { dt, clouds, main, weather } = data
+
   return (
     <div className="widget daily-item" data-testid="daily-item">
       <p>

@@ -23,7 +23,7 @@ export const fetchAirPolutionMockedResponse = {
         aqi: 2,
       },
     },
-  ],
+  ] as any,
 }
 
 describe("airPollution service", () => {

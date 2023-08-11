@@ -6,21 +6,26 @@ import shareIcon from "../../assets/images/share-icon.png"
 import resetIcon from "../../assets/images/reset.png"
 
 const CurrentWidget: React.FC = () => {
+  // Get weatherData and copyShareUrl from the weather context
   const { weatherData, copyShareUrl } = useWeather()
 
+  // If weatherData is not available or doesn't contain data, show Loader if necessary
   if (!weatherData || !weatherData.data) {
     return <Loader />
   }
 
+  // If weatherData is loading or data is empty, show Loader if necessary
   if (weatherData.loading || Object.keys(weatherData.data).length === 0) {
     return <Loader />
   }
 
+  // Destructure necessary information from weatherData
   const fullWeatherInfo = weatherData.data
   const { main, name: location, weather } = fullWeatherInfo
   const { temp, feels_like, humidity, pressure, temp_max, temp_min } = main
   const { main: mainDetail, icon, description } = weather[0]
 
+  // Return the CurrentWidget component with weather information
   return (
     <>
       <div className="widget weather-detail">

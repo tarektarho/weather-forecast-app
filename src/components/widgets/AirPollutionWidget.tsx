@@ -3,6 +3,7 @@ import { useWeather } from "../../providers/weatherContext"
 import Loader from "../common/Loader"
 
 // https://openweathermap.org/api/air-pollution
+// Air pollution quality descriptions
 const airPollutionQuality: Record<string, string> = {
   "1": "Good Quality",
   "2": "Fair Quality",
@@ -14,6 +15,7 @@ const airPollutionQuality: Record<string, string> = {
 const AirPollutionWidget: React.FC = () => {
   const { airPollutionData } = useWeather()
 
+  // Check if air pollution data is loading or not available
   if (
     airPollutionData.loading ||
     Object.keys(airPollutionData.data).length === 0
@@ -21,11 +23,23 @@ const AirPollutionWidget: React.FC = () => {
     return <Loader />
   }
 
-  // It comes in an array with only one object from the OpenWeather API
+  // Extract the pollution information from the data
   const pollutionInfo = airPollutionData.data.list[0]
   const { main, components } = pollutionInfo
   const { aqi } = main
   const quality = Math.trunc(Math.floor(aqi))
+
+  // Array of air pollution components
+  const pollutionComponents = [
+    { label: "CO", value: components.co },
+    { label: "Nh3", value: components.nh3 },
+    { label: "NO", value: components.no },
+    { label: "No2", value: components.no2 },
+    { label: "O3", value: components.o3 },
+    { label: "Pm2 5", value: components.pm2_5 },
+    { label: "Pm 10", value: components.pm10 },
+    { label: "So2", value: components.so2 },
+  ]
 
   return (
     <>
@@ -36,46 +50,14 @@ const AirPollutionWidget: React.FC = () => {
         <h3>{airPollutionQuality[quality]}</h3>
       </div>
       <div className="flex-wrap">
-        <div className="air-data">
-          <span>1</span>
-          <h4>CO</h4>
-          <p data-testid="airpollution-co">{components.co}</p>
-        </div>
-        <div className="air-data">
-          <span>2</span>
-          <h4>Nh3</h4>
-          <p>{components.nh3}</p>
-        </div>
-        <div className="air-data">
-          <span>3</span>
-          <h4>NO</h4>
-          <p>{components.no}</p>
-        </div>
-        <div className="air-data">
-          <span>4</span>
-          <h4>No2</h4>
-          <p>{components.no2}</p>
-        </div>
-        <div className="air-data">
-          <span>5</span>
-          <h4>O3</h4>
-          <p>{components.o3}</p>
-        </div>
-        <div className="air-data">
-          <span>6</span>
-          <h4>Pm2 5</h4>
-          <p>{components.pm2_5}</p>
-        </div>
-        <div className="air-data">
-          <span>7</span>
-          <h4>Pm 10</h4>
-          <p>{components.pm10}</p>
-        </div>
-        <div className="air-data">
-          <span>8</span>
-          <h4>So2</h4>
-          <p>{components.so2}</p>
-        </div>
+        {pollutionComponents &&
+          pollutionComponents.map((component, index) => (
+            <div className="air-data" key={index}>
+              <span>{index + 1}</span>
+              <h4>{component.label}</h4>
+              <p data-testid="airpollution-co">{component.value}</p>
+            </div>
+          ))}
       </div>
     </>
   )

@@ -5,18 +5,20 @@ import Loader from "../common/Loader"
 import ForecastData from "../../types/forecastTypes"
 
 const DailyWidget: React.FC = () => {
+  // Retrieve forecast data from the weather context
   const { forecastData } = useWeather()
 
   if (!forecastData || !forecastData.data) {
-    return <Loader />
+    return <Loader /> // Display loading spinner if necessary
   }
 
   if (forecastData.loading || Object.keys(forecastData.data).length === 0) {
-    return <Loader />
+    return <Loader /> // Display loading spinner if necessary
   }
 
   const { list: forecastList } = forecastData.data
 
+  // Render the forecast data if available
   return (
     <>
       <h3 className="widget-title" data-testid="daily-widget-title">

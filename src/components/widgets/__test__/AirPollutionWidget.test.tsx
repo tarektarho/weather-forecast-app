@@ -66,10 +66,10 @@ describe("AirPollutionWidget", () => {
       },
     })
     const title = screen.getByTestId("airpollution-widget-title")
-    const co = screen.getByTestId("airpollution-co")
+    const co = screen.getAllByTestId("airpollution-co")
 
     expect(title).toBeVisible()
     expect(title).toHaveTextContent("Your Current Air Pollution")
-    expect(co).toHaveTextContent("247")
+    expect(co[0]).toHaveTextContent("247")
   })
 })

@@ -1,6 +1,5 @@
 import React from "react"
 import "../styles/Dashboard.scss"
-import { getLocalStorageItem } from "../utils"
 import { LOCAL_STORAGE_KEY_WELCOME_MODAL } from "../utils/constants"
 import { useWeather } from "../providers/weatherContext"
 import CurrentWidget from "./widgets/CurrentWidget"
@@ -12,18 +11,17 @@ import Search from "./Search"
 import Modal from "./Modal"
 
 const Dashboard: React.FC = () => {
+  // Fetch necessary data and functions from the WeatherContext
   const { modal, hideModal, weatherData, error, hideError, info, setInfo } =
     useWeather()
 
+  // Render an error notification if there's an error message
   const renderErrorIfAny = () => {
-    if ((weatherData && weatherData.error) || error) {
-      let withError = error
-      if (weatherData && weatherData.error) {
-        withError = weatherData.error
-      }
+    const currentError = weatherData?.error || error
+    if (currentError) {
       return (
         <Notification
-          message={withError}
+          message={currentError}
           hideNotification={hideError}
           type="error"
         />
@@ -31,6 +29,7 @@ const Dashboard: React.FC = () => {
     }
   }
 
+  // Render an info notification if there's an info message
   const renderNotificationIfAny = () => {
     if (info) {
       return (
@@ -43,12 +42,13 @@ const Dashboard: React.FC = () => {
     }
   }
 
+  // Render the welcome modal if it's required
   const renderModalIfNeeded = () => {
     if (!modal) {
-      return
+      return null
     }
 
-    const welcomeModal = getLocalStorageItem(LOCAL_STORAGE_KEY_WELCOME_MODAL)
+    const welcomeModal = localStorage.getItem(LOCAL_STORAGE_KEY_WELCOME_MODAL)
     if (!welcomeModal) {
       return <Modal hideModal={hideModal} />
     }

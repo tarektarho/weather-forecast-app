@@ -24,7 +24,7 @@ interface AirPollutionData {
     lon: number
     lat: number
   }
-  airPoList: AirPollutionItem
+  list: AirPollutionItem
 }
 
 export default AirPollutionData

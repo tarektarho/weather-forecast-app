@@ -56,17 +56,17 @@ describe("Search", () => {
     })
 
     vi.spyOn(WeatherService, "getWeatherByLatLon").mockImplementation(() => {
-      return Promise.resolve({ ...weatherServiceMockedResponse })
+      return Promise.resolve({ ...weatherServiceMockedResponse }) as any //todo set the type
     })
 
     vi.spyOn(AirPollutionService, "getAirPollutionByLatLon").mockImplementation(
       () => {
-        return Promise.resolve({ ...fetchAirPolutionMockedResponse })
+        return Promise.resolve({ ...fetchAirPolutionMockedResponse }) as any
       },
     )
 
     vi.spyOn(ForecastService, "getForecastByLatLon").mockImplementation(() => {
-      return Promise.resolve({ ...forecastServiceMockedResponse })
+      return Promise.resolve({ ...forecastServiceMockedResponse }) as any
     })
 
     // to search by mocks
@@ -78,14 +78,14 @@ describe("Search", () => {
           ...forecastServiceMockedResponse.city,
           name: "Rotterdam",
         },
-      })
+      }) as any
     })
 
     vi.spyOn(WeatherService, "getWeatherByCity").mockImplementation(() => {
       return Promise.resolve({
         ...weatherServiceMockedResponse,
         name: "Rotterdam",
-      })
+      }) as any
     })
 
     render(<Dashboard />, { wrapper })

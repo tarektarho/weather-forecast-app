@@ -1,5 +1,4 @@
 import React from "react"
-import StarIcon from "../assets/images/star.png"
 import MapImg from "../assets/images/map.jpeg"
 
 interface ModalProps {
@@ -7,6 +6,14 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ hideModal }) => {
+  const appFeatures = [
+    "Get real-time weather with Geolocation.",
+    "Search weather by city.",
+    "Forecast for 5 days / 3 hours.",
+    "Air Pollution from Geolocation.",
+    "Share current location weather with friends.",
+  ]
+
   return (
     <div className="modal-container" data-testid="modal-container">
       <div className="modal-wrapper">
@@ -19,19 +26,12 @@ const Modal: React.FC<ModalProps> = ({ hideModal }) => {
           <div className="modal-body">
             <h3>App Features</h3>
             <ul>
-              <li>Get real time weather with Geolocation.</li>
-              <li>Search weather by city.</li>
-              <li>Forecast 5 days / 3 hours.</li>
-              <li>Air Pollution from Geolocation.</li>
-              <li>Share current location weather with friends.</li>
+              {appFeatures.map((feature, index) => (
+                <li key={index}>{feature}</li>
+              ))}
             </ul>
           </div>
           <img src={MapImg} alt="map" />
-        </div>
-
-        <div className="modal-enphasis">
-          <img src={StarIcon} alt="star icon" />
-          <p>Hope you enjoy this version.</p>
         </div>
 
         <div className="modal-button">

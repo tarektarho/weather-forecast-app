@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit"
 import { weatherSlice } from "../weather"
 import * as WeatherService from "../../../services/weather"
 import { getWeatherByLatLon, getWeatherByCity } from "../../thunks/weather"
+import { weatherServiceMockedResponse } from "../../../services/__test__/weather.test"
 
 describe("weatherReducer", () => {
   afterEach(() => {
@@ -10,14 +11,14 @@ describe("weatherReducer", () => {
 
   it("should get data fulfilled with lat and lon", async () => {
     vi.spyOn(WeatherService, "getWeatherByLatLon").mockResolvedValueOnce({
-      sample: "info",
+      ...weatherServiceMockedResponse,
     })
     const store = configureStore({ reducer: weatherSlice.reducer })
     await store.dispatch(getWeatherByLatLon({ lat: 1, lon: 1 }))
     expect(store.getState()).toEqual({
       loading: false,
       error: "",
-      data: { sample: "info" },
+      data: { ...weatherServiceMockedResponse },
     })
   })
 
@@ -38,14 +39,14 @@ describe("weatherReducer", () => {
 
 it("should post data fulfilled with city", async () => {
   vi.spyOn(WeatherService, "getWeatherByCity").mockResolvedValueOnce({
-    sample: "info",
+    ...weatherServiceMockedResponse,
   })
   const store = configureStore({ reducer: weatherSlice.reducer })
   await store.dispatch(getWeatherByCity({ city: "Miami" }))
   expect(store.getState()).toEqual({
     loading: false,
     error: "",
-    data: { sample: "info" },
+    data: { ...weatherServiceMockedResponse },
   })
 })
 

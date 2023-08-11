@@ -12,6 +12,7 @@ import { weatherServiceMockedResponse } from "../../services/__test__/weather.te
 import { forecastServiceMockedResponse } from "../../services/__test__/forecast.test"
 import { fetchAirPolutionMockedResponse } from "../../services/__test__/airPollution.test"
 import { WeatherProviderProps } from "./Dashboard.test"
+import AirPollutionData from "../../types/airPollution"
 
 describe("Notification", () => {
   const wrapper: React.FC<WeatherProviderProps> = ({ children }) => {
@@ -65,17 +66,19 @@ describe("Notification", () => {
     })
 
     vi.spyOn(WeatherService, "getWeatherByLatLon").mockImplementation(() => {
-      return Promise.resolve({ ...weatherServiceMockedResponse })
+      return Promise.resolve({ ...weatherServiceMockedResponse }) as any
     })
 
     vi.spyOn(AirPollutionService, "getAirPollutionByLatLon").mockImplementation(
       () => {
-        return Promise.resolve({ ...fetchAirPolutionMockedResponse })
+        return Promise.resolve({
+          ...fetchAirPolutionMockedResponse,
+        }) as any
       },
     )
 
     vi.spyOn(ForecastService, "getForecastByLatLon").mockImplementation(() => {
-      return Promise.resolve({ ...forecastServiceMockedResponse })
+      return Promise.resolve({ ...forecastServiceMockedResponse }) as any
     })
 
     // to search by mocks

@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit"
 import { airPollutionSlice } from "../airPollution"
 import * as AirPollutionAPI from "../../../services/airPollution"
 import { getAirPollutionByLatLon } from "../../thunks/airPollution"
+import { fetchAirPolutionMockedResponse } from "../../../services/__test__/airPollution.test"
 
 describe("airPollutionReducer", () => {
   afterEach(() => {
@@ -10,14 +11,14 @@ describe("airPollutionReducer", () => {
 
   it("should post data fulfilled", async () => {
     vi.spyOn(AirPollutionAPI, "getAirPollutionByLatLon").mockResolvedValueOnce({
-      sample: "info",
+      ...fetchAirPolutionMockedResponse,
     })
     const store = configureStore({ reducer: airPollutionSlice.reducer })
     await store.dispatch(getAirPollutionByLatLon({ lat: 1, lon: 1 }))
     expect(store.getState()).toEqual({
       loading: false,
       error: "",
-      data: { sample: "info" },
+      data: { ...fetchAirPolutionMockedResponse },
     })
   })
 

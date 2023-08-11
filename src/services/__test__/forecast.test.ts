@@ -3,6 +3,7 @@ import {
   ERROR_INVALID_LAT_LON,
 } from "../../utils/constants"
 import { getForecastByLatLon, getForecastByCity } from "../forecast"
+import ForecastData from "../../types/forecastTypes"
 
 export const forecastServiceMockedResponse = {
   cod: "200",
@@ -1551,7 +1552,7 @@ export const forecastServiceMockedResponse = {
       },
       dt_txt: "2022-10-19 12:00:00",
     },
-  ],
+  ] as unknown as ForecastData["list"],
   city: {
     id: 4166233,
     name: "North Miami Beach",
