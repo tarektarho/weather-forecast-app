@@ -17,7 +17,7 @@ const Notification: React.FC<NotificationProps> = ({
     if (type === "error") {
       return <img src={ErrorIcon} alt={type} data-testid="error-icon" />
     }
-    return null
+    return
   }
 
   return (

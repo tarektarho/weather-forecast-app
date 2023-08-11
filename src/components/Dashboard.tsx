@@ -45,7 +45,7 @@ const Dashboard: React.FC = () => {
   // Render the welcome modal if it's required
   const renderModalIfNeeded = () => {
     if (!modal) {
-      return null
+      return
     }
 
     const welcomeModal = localStorage.getItem(LOCAL_STORAGE_KEY_WELCOME_MODAL)
