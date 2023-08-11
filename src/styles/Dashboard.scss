@@ -510,6 +510,14 @@
   }
 }
 
+/* MOBILE */
+@media only screen and (max-width: 430px) {
+
+  .flex-wrap {
+    justify-content: center;
+  }
+}
+
 /* TABLET */
 @media (min-width: 768px) {
   .main-title {
