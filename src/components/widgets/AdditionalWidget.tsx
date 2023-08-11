@@ -1,7 +1,7 @@
 import React from "react"
 import { useWeather } from "../../providers/weatherContext"
-import Sunrise from "../../assets/images/sunrise.png"
-import Sunset from "../../assets/images/sunset.png"
+import Sunrise from "../../assets/images/day-image.png"
+import Sunset from "../../assets/images/night-image.png"
 import Loader from "../common/Loader"
 import { getHour } from "../../utils/index"
 
