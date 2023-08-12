@@ -19,7 +19,7 @@ export const getDay = (date: number): number => new Date(date * 1000).getDate()
  * @returns The formatted time.
  */
 export const getHour = (date: number): string =>
-  new Date(date * 1000).toLocaleTimeString("en-US", {
+  new Date(date * 1000).toLocaleTimeString("en-GB", {
     timeZone: "Europe/Amsterdam", // Todo set the time zone dynimcally from the user current location
   })
 

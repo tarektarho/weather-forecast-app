@@ -18,7 +18,7 @@ describe("Utils", () => {
   describe("getHour", () => {
     it("returns the hour of a date-time unix timestamp datetime value", () => {
       const result = Utils.getHour(unix_date)
-      expect(result).toEqual("10:43:42 PM")
+      expect(result).toEqual("22:43:42")
     })
   })
 
