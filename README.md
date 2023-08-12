@@ -1,20 +1,16 @@
 [![Test and Coverage](https://github.com/tarektarho/weather-forecast-app/actions/workflows/main.yml/badge.svg)](https://github.com/tarektarho/weather-forecast-app/actions/workflows/main.yml)
 
-
 # WeatherForecastApp
 
-## Live Demo: 
-https://tarek-weather-forecast-app.netlify.app/
+## Live Demo:
 
+https://tarek-weather-forecast-app.netlify.app/
 
 The app was build with [Vite](https://vitejs.dev/), [Vitest](https://vitest.dev/), and [React Testing Library](https://github.com/testing-library/react-testing-library), React, TypeScript, Redux, and a publicly available Weather Forecast API: `"https://api.openweathermap.org/data/2.5"`
 
 The application empowers users to search for weather forecasts in various cities and access detailed weather information.
 
-
 ![weather-forecast-app](https://github.com/tarektarho/weather-forecast-app/assets/18512695/890af764-a13f-4dc4-adc4-c456785029b7)
-
-
 
 ## Goals
 
@@ -23,6 +19,7 @@ The application empowers users to search for weather forecasts in various cities
 - The optional bonus features further contribute to an exceptional user experience and expanded functionality.
 
 ## Features
+
 - Display the weather forecast based on the current usre latitude and longitude
 - Display the weather forecast based on search input
 - Display the future weather forecast for the next 7 days
@@ -31,6 +28,7 @@ The application empowers users to search for weather forecasts in various cities
 ## Project Setup
 
 - Clone the repo:
+
   ```sh
   git clone https://github.com/tarektarho/weather-forecast-app.git
   ```
@@ -41,11 +39,13 @@ The application empowers users to search for weather forecasts in various cities
   npm install
   ```
 - Run the app:
+
   ```sh
   npm run dev / npm run start - start dev server and open browser
   ```
 
 - Run build:
+
   ```sh
   npm run build - build for production
   npm run preview - locally preview production build
@@ -57,13 +57,13 @@ The application empowers users to search for weather forecasts in various cities
   For testing the app currently is using the following key = `5b0c24dafae110f702753f6d13a704fb`
 
 - Run test:
+
   ```sh
   npm run test
   ```
 
 - Coverage:
-   ![Screenshot 2023-08-11 at 17 33 42](https://github.com/tarektarho/weather-forecast-app/assets/18512695/a9a26811-9be8-41de-b556-502709b4baa0)
-
+  ![Screenshot 2023-08-11 at 17 33 42](https://github.com/tarektarho/weather-forecast-app/assets/18512695/a9a26811-9be8-41de-b556-502709b4baa0)
 
 ## Inspiration
 
@@ -72,18 +72,17 @@ The application empowers users to search for weather forecasts in various cities
 - [Vitest](https://github.com/vitest-dev/vitest/tree/main/examples/react-testing-lib)
 
 ## Dependencies
+
 This template includes various dependencies to streamline development and enhance the user experience. Some of the key dependencies are:
 
- - react, react-dom: Building user interfaces with React.
- - @reduxjs/toolkit: Simplified Redux state management.
- - react-redux: React bindings for Redux.
- - react-router-dom: Handling dynamic routing in React applications.
- - sass: Using SCSS for enhanced styling capabilities.
- - vitest: Testing utility for Vite applications.
- - eslint, prettier: Code linting and formatting.
- - typescript: TypeScript for static type checking.
-
-
+- react, react-dom: Building user interfaces with React.
+- @reduxjs/toolkit: Simplified Redux state management.
+- react-redux: React bindings for Redux.
+- react-router-dom: Handling dynamic routing in React applications.
+- sass: Using SCSS for enhanced styling capabilities.
+- vitest: Testing utility for Vite applications.
+- eslint, prettier: Code linting and formatting.
+- typescript: TypeScript for static type checking.
 
 ## Todos
 
