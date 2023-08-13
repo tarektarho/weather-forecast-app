@@ -86,6 +86,7 @@ This template includes various dependencies to streamline development and enhanc
 
 ## Todos
 
+- [ ] Internationalization
 - [ ] Dark/Light Mode
 - [ ] Split the style per component
 - [ ] Store the API key in github secrets
