@@ -26,7 +26,7 @@ describe("Notification", () => {
     render(
       <Notification
         message="city not found"
-        hideNotification={() => {}}
+        hideNotification={() => { }}
         type="error"
       />,
     )
@@ -35,7 +35,7 @@ describe("Notification", () => {
 
     expect(div).toBeVisible()
     expect(div).toHaveClass("error")
-    expect(div.textContent).toEqual("city not found")
+    expect(div.textContent?.trim()).toEqual("city not found")
     expect(icon).toBeVisible()
   })
 
@@ -43,7 +43,7 @@ describe("Notification", () => {
     render(
       <Notification
         message="URL was copied to clipboard"
-        hideNotification={() => {}}
+        hideNotification={() => { }}
         type="info"
       />,
     )
@@ -52,7 +52,7 @@ describe("Notification", () => {
 
     expect(div).toBeVisible()
     expect(div).toHaveClass("info")
-    expect(div.textContent).toEqual("URL was copied to clipboard")
+    expect(div.textContent?.trim()).toEqual("URL was copied to clipboard")
   })
 
   it("close error notification", async () => {
@@ -103,7 +103,8 @@ describe("Notification", () => {
     })
 
     const div = screen.getByTestId("notification")
-    expect(div.textContent).toEqual("city not found")
+    const text = div.textContent?.trim()
+    expect(text).toEqual("city not found")
     const closeIcon = screen.getByTestId("close-icon")
 
     // eslint-disable-next-line testing-library/no-unnecessary-act
