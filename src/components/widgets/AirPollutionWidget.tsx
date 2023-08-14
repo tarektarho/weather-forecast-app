@@ -27,6 +27,8 @@ const AirPollutionWidget: React.FC = () => {
   const pollutionInfo = airPollutionData.data.list[0]
   const { main, components } = pollutionInfo
   const { aqi } = main
+
+  // Calculate the air quality index (AQI) and ensure it's a whole number.
   const quality = Math.trunc(Math.floor(aqi))
 
   // Array of air pollution components
