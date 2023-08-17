@@ -26,7 +26,7 @@ describe("Notification", () => {
     render(
       <Notification
         message="city not found"
-        hideNotification={() => { }}
+        hideNotification={() => {}}
         type="error"
       />,
     )
@@ -43,7 +43,7 @@ describe("Notification", () => {
     render(
       <Notification
         message="URL was copied to clipboard"
-        hideNotification={() => { }}
+        hideNotification={() => {}}
         type="info"
       />,
     )
