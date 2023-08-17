@@ -12,6 +12,7 @@ import { Coordinates } from "../features/thunks/types"
 import AirPollutionData from "../types/airPollution"
 import ForecastData from "../types/forecast"
 import { Dispatch } from "redux"
+import { ERROR_BROWSER_GEOLOCATION_OFF } from "../utils/constants"
 
 interface WeatherProviderProps {
   children: React.ReactNode
@@ -80,8 +81,12 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
         setLon(longitude)
         Utils.savePosition(latitude, longitude)
       }
-    } catch (e) {
-      setError(String(e))
+    } catch (error: any) {
+      if (error.message) {
+        setError(String(error.message))
+      } else {
+        setError(ERROR_BROWSER_GEOLOCATION_OFF)
+      }
     }
   }
 
