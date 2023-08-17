@@ -8,7 +8,7 @@ const Search: React.FC = () => {
   // Defining the keydown event handler using useCallback for better performance
   const handleKeyboard = useCallback(
     (event: KeyboardEvent) => {
-      if (event.key === "Enter") {
+      if (event.key.toLocaleLowerCase() === "enter") {
         searchByCity()
       }
     },
