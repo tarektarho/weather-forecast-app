@@ -114,6 +114,11 @@ export const resetApp = (): void => {
  */
 export const placeLinkIntoClipBoard = (): Promise<void> => {
   const location = getLocalStorageItem(LOCAL_STORAGE_KEY_GPS_POSITION)
+
+  if (location === null) {
+    // Handle the case when location is null
+    return Promise.reject("Location is not available.")
+  }
   const { lat, lon } = location
   const link = `${window.location.href}?${URL_PARAM_LAT}=${lat}&${URL_PARAM_LON}=${lon}`
   return navigator.clipboard.writeText(link)
@@ -144,9 +149,18 @@ export const getBrowserGeoPosition = (): Promise<{
       return reject(ERROR_BROWSER_GEOLOCATION_OFF)
     }
 
-    navigator.geolocation.getCurrentPosition((position) => {
-      const { latitude, longitude } = position.coords
-      return resolve({ latitude, longitude })
-    })
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords
+        if (latitude !== undefined && longitude !== undefined) {
+          return resolve({ latitude, longitude })
+        } else {
+          return reject("Geolocation position is undefined.")
+        }
+      },
+      (error) => {
+        return reject(error)
+      },
+    )
   })
 }
