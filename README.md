@@ -1,4 +1,4 @@
-[![Test and Coverage](https://github.com/tarektarho/weather-forecast-app/actions/workflows/main.yml/badge.svg)](https://github.com/tarektarho/weather-forecast-app/actions/workflows/main.yml)
+[![Test and Coverage](https://github.com/tarektarho/weather-forecast-app/actions/workflows/main.yml/badge.svg)](https://github.com/tarektarho/weather-forecast-app/actions/workflows/main.yml) [![codecov](https://codecov.io/gh/tarektarho/weather-forecast-app/graph/badge.svg?token=0XKANDLVSY)](https://codecov.io/gh/tarektarho/weather-forecast-app)
 
 # WeatherForecastApp
 
@@ -88,7 +88,7 @@ This template includes various dependencies to streamline development and enhanc
 
 - **@testing-library/dom**, **@testing-library/jest-dom**, **@testing-library/react**, **@testing-library/user-event**: Libraries for testing React components using the testing-library approach, which promotes testing user interactions.
 - **@types/react**, **@types/react-dom**: TypeScript type definitions for React and ReactDOM.
-- **@types/testing-library__jest-dom**: TypeScript type definitions for the jest-dom library, which provides custom Jest matchers for asserting on DOM nodes.
+- **@types/testing-library\_\_jest-dom**: TypeScript type definitions for the jest-dom library, which provides custom Jest matchers for asserting on DOM nodes.
 - **@vitejs/plugin-react**: A Vite plugin that enables React support, allowing you to use JSX and React components in Vite projects.
 - **@vitest/coverage-c8**: A Vitest plugin for generating code coverage reports using c8, a code coverage tool.
 - **eslint**, **eslint-config-react-app**: ESLint is a linter tool for identifying and reporting on patterns found in JavaScript code. eslint-config-react-app provides ESLint configurations used in Create React App.
