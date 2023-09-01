@@ -62,9 +62,6 @@ The application empowers users to search for weather forecasts in various cities
   npm run test
   ```
 
-- Coverage:
-  ![Screenshot 2023-08-11 at 17 33 42](https://github.com/tarektarho/weather-forecast-app/assets/18512695/a9a26811-9be8-41de-b556-502709b4baa0)
-
 ## Inspiration
 
 - [Create React App](https://github.com/facebook/create-react-app/tree/main/packages/cra-template)
@@ -79,7 +76,6 @@ This template includes various dependencies to streamline development and enhanc
 - **cross-fetch**: A library that provides a consistent API for making fetch requests both in browsers and Node.js environments.
 - **react**: The core library for building user interfaces in React applications.
 - **react-dom**: A package for rendering React components in the DOM.
-- [**react-loader-spinner**:](https://mhnpd.github.io/react-loader-spinner/) A library for displaying loading spinners or animations while waiting for content to load in React applications.
 - **react-redux**: The official React bindings for Redux, used to connect Redux store with React components.
 - **react-router-dom**: A package that provides routing capabilities for single-page React applications using the DOM.
 - **sass**: A CSS extension language that provides advanced features like variables, nesting, and mixins for more organized styles.
