@@ -1,19 +1,19 @@
 import React from "react"
 import { useWeather } from "../../providers/weatherContext"
 import DailyDetail from "./DailyDetail"
-import Loader from "../common/Loader"
 import ForecastData from "../../types/forecast"
+import DailyWidgetSkeleton from "../common/skeletons/DailyWidgetSkeleton"
 
 const DailyWidget: React.FC = () => {
   // Retrieve forecast data from the weather context
   const { forecastData } = useWeather()
 
   if (!forecastData || !forecastData.data) {
-    return <Loader /> // Display loading spinner if necessary
+    return <DailyWidgetSkeleton />
   }
 
   if (forecastData.loading || Object.keys(forecastData.data).length === 0) {
-    return <Loader /> // Display loading spinner if necessary
+    return <DailyWidgetSkeleton />
   }
 
   const { list: forecastList } = forecastData.data

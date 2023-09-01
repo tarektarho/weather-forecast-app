@@ -43,8 +43,8 @@ describe("AirPollutionWidget", () => {
 
   it("renders is loading if airPollutionData.loading is true", () => {
     renderComponent()
-    const loadingComponent = screen.getByTestId("puff-svg")
-    expect(loadingComponent).toBeVisible()
+    const skeletonComponent = screen.getAllByTestId("skeleton-test-id")[0]
+    expect(skeletonComponent).toBeVisible()
   })
   it("renders is loading if airPollutionData.data is empty", () => {
     renderComponent({
@@ -54,8 +54,8 @@ describe("AirPollutionWidget", () => {
         data: {},
       },
     })
-    const loadingComponent = screen.getByTestId("puff-svg")
-    expect(loadingComponent).toBeVisible()
+    const skeletonComponent = screen.getAllByTestId("skeleton-test-id")[0]
+    expect(skeletonComponent).toBeVisible()
   })
 
   it("renders if items present", () => {

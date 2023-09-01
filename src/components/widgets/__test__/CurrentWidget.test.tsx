@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { render, screen, waitFor } from "@testing-library/react"
 import { weatherServiceMockedResponse } from "../../../services/__test__/weather.test"
 import {
   WeatherContext,
@@ -24,11 +24,11 @@ describe("CurrentWidget", () => {
 
   it("renders is loading if weatherData.loading is true", () => {
     renderComponent()
-    const loadingComponent = screen.getByTestId("puff-svg")
-    expect(loadingComponent).toBeVisible()
+    const skeletonComponent = screen.getByRole("current-widget-skeleton")
+    expect(skeletonComponent).toBeVisible()
   })
 
-  it("renders is loading if weatherData.data is empty", () => {
+  it("renders is loading if weatherData.data is empty", async () => {
     renderComponent({
       ...weatherContextMockedData,
       weatherData: {
@@ -36,8 +36,8 @@ describe("CurrentWidget", () => {
         data: {},
       },
     })
-    const loadingComponent = screen.getByTestId("puff-svg")
-    expect(loadingComponent).toBeVisible()
+    const skeletonComponent = screen.getByRole("current-widget-skeleton")
+    await waitFor(() => expect(skeletonComponent).toBeVisible())
   })
 
   it("renders if items present", () => {

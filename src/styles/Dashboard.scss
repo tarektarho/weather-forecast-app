@@ -131,7 +131,11 @@
 }
 
 .weather-extra {
+  justify-content: center;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   img {
     width: 42px;
@@ -233,11 +237,11 @@
   align-items: center;
   transition: 0.4s;
 
-  &:hover {
+  &:hover:not(.skeleton) {
     transform: scale(1.1);
   }
 
-  &:nth-child(1) {
+  &:nth-child(1):not(.skeleton) {
     background: $light-blue;
   }
 
@@ -316,6 +320,9 @@
 
 .air-title {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   h3 {
     font-size: 32px;
@@ -348,6 +355,7 @@
     display: inline-block;
     top: 3px;
     left: 6px;
+    width: fit-content;
   }
 
   h4 {
@@ -359,15 +367,6 @@
     font-weight: 600;
     font-size: 14px;
   }
-}
-
-
-.loader-container {
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  align-items: center;
 }
 
 .modal-container {
@@ -494,6 +493,28 @@
   }
 }
 
+
+
+.skeleton-container {
+  margin: 0 10px 0 10px;
+  background-color: #ddd;
+  border-radius: 4px;
+  animation: pulse 1s ease-in-out infinite;
+
+  @keyframes pulse {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.6;
+    }
+  }
+}
+
+
 /* MOBILE */
 @media only screen and (max-width: 430px) {
 
@@ -609,7 +630,7 @@
   }
 
   .search input {
-    margin-right: 8px;
+    padding-right: 8px;
   }
 
   .main-wrapper {

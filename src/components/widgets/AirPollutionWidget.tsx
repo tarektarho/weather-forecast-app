@@ -1,6 +1,6 @@
 import React from "react"
 import { useWeather } from "../../providers/weatherContext"
-import Loader from "../common/Loader"
+import AirPollutionWidgetSkeleton from "../common/skeletons/AirPollutionWidgetSkeleton"
 
 // https://openweathermap.org/api/air-pollution
 // Air pollution quality descriptions
@@ -20,7 +20,7 @@ const AirPollutionWidget: React.FC = () => {
     airPollutionData.loading ||
     Object.keys(airPollutionData.data).length === 0
   ) {
-    return <Loader />
+    return <AirPollutionWidgetSkeleton />
   }
 
   // Extract the pollution information from the data

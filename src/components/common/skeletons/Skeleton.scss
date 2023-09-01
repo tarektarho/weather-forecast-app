@@ -1,0 +1,75 @@
+/* Basic styles */
+.skeleton {
+  background: #ddd;
+  overflow: hidden;
+  border-radius: 4px;
+  animation: pulse 1s ease-in-out infinite;
+
+  &.input {
+    width: 171px;
+    height: 42px;
+    margin-right: 8px;
+  }
+
+  &.button {
+    width: 113px;
+    height: 42px;
+  }
+
+  &.title {
+    width: 185px;
+    height: 45px;
+  }
+
+  &.long-title {
+    width: 240px;
+    height: 30px;
+    margin-bottom: 10px;
+  }
+
+  &.forecast-title {
+    width: 185px;
+    height: 42px;
+    margin-left: 16px;
+  }
+
+  &.long-text {
+    width: 100px;
+    height: 17px;
+    margin-bottom: 3px;
+  }
+
+  &.icon-small {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+
+  &.small-temp {
+    height: 30px;
+    width: 30px;
+    margin-bottom: 16px;
+  }
+
+  &.weather-extra {
+    height: 70px;
+  }
+}
+
+.mb-8 {
+  margin-bottom: 8px;
+}
+
+/* Animation effects */
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}

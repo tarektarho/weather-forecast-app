@@ -1,22 +1,22 @@
 import React from "react"
 import { useWeather } from "../../providers/weatherContext"
 import { getWeatherIcon, resetApp, convertKelvinToCelsius } from "../../utils"
-import Loader from "../common/Loader"
 import shareIcon from "../../assets/images/share.png"
 import resetIcon from "../../assets/images/reset.png"
+import CurrentWidgetSkeleton from "../common/skeletons/CurrentWidgetSkeleton"
 
 const CurrentWidget: React.FC = () => {
   // Get weatherData and copyShareUrl from the weather context
   const { weatherData, copyShareUrl } = useWeather()
 
-  // If weatherData is not available or doesn't contain data, show Loader if necessary
+  // If weatherData is not available or doesn't contain data, return.
   if (!weatherData || !weatherData.data) {
-    return <Loader />
+    return <CurrentWidgetSkeleton />
   }
 
-  // If weatherData is loading or data is empty, show Loader if necessary
+  // If weatherData is loading or data is empty, return.
   if (weatherData.loading || Object.keys(weatherData.data).length === 0) {
-    return <Loader />
+    return <CurrentWidgetSkeleton />
   }
 
   // Destructure necessary information from weatherData

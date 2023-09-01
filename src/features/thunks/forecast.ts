@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import * as ForecastService from "../../services/forecast"
 import { Coordinates, CityPayload } from "./types"
+import ForecastData from "../../types/forecast"
 
 /**
  * Async thunk action to get forecast data by latitude and longitude.
@@ -9,7 +10,7 @@ import { Coordinates, CityPayload } from "./types"
  * @param {Object} { rejectWithValue } - The callback to reject the promise with a value.
  * @returns {Promise} A promise that resolves to the forecast data or rejects with an error.
  */
-export const getForecastByLatLon = createAsyncThunk(
+export const getForecastByLatLon = createAsyncThunk<ForecastData, Coordinates>(
   "forecast/getForecastByLatLon",
   async ({ lat, lon }: Coordinates, { rejectWithValue }) => {
     try {

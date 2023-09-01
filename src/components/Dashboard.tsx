@@ -10,6 +10,8 @@ import Notification from "./Notification"
 import Search from "./Search"
 import Modal from "./Modal"
 import { getLocalStorageItem } from "../utils"
+import SearchSkeleton from "./common/skeletons/SearchSkeleton"
+import SkeletonElement from "./common/skeletons/SkeletonElement"
 
 const Dashboard: React.FC = () => {
   // Fetch necessary data and functions from the WeatherContext
@@ -68,7 +70,7 @@ const Dashboard: React.FC = () => {
           {/* Forecast 5 days */}
           <DailyWidget />
           <div className="flex-wrapper">
-            {/* Sys */}
+            {/* More data from OpenWeather */}
             <div className="flex-item widget">
               <AdditionalWidget />
             </div>
