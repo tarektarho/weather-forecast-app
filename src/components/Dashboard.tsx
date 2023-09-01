@@ -10,8 +10,6 @@ import Notification from "./Notification"
 import Search from "./Search"
 import Modal from "./Modal"
 import { getLocalStorageItem } from "../utils"
-import SearchSkeleton from "./common/skeletons/SearchSkeleton"
-import SkeletonElement from "./common/skeletons/SkeletonElement"
 
 const Dashboard: React.FC = () => {
   // Fetch necessary data and functions from the WeatherContext
