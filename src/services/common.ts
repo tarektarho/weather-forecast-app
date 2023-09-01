@@ -20,7 +20,7 @@ export const fetchData = async (url: string, params: string): Promise<any> => {
     // Parse JSON response regardless of status
     const responseData = await response.json()
 
-    await sleep(100) // Pause for 1 second to ensure synchronized padding in the loading state for the skeletons.
+    await sleep(1000) // Pause for 1 second to ensure synchronized padding in the loading state for the skeletons.
 
     // Check if the response status is 200 (OK) and return parsed data
     if (response.status === STATUS_OK) {
