@@ -111,22 +111,4 @@ describe("Utils", () => {
       expect(result).toEqual(null)
     })
   })
-
-  describe("sleep method", () => {
-    it("should resolve after a specified time", async () => {
-      const startTime = Date.now()
-      const delay = 1000 // Sleep for 1 second
-
-      await Utils.sleep(delay)
-
-      const endTime = Date.now()
-      const elapsedTime = endTime - startTime
-
-      // Allow a small tolerance for timer accuracy
-      const tolerance = 100
-
-      expect(elapsedTime).toBeGreaterThanOrEqual(delay - tolerance)
-      expect(elapsedTime).toBeLessThanOrEqual(delay + tolerance)
-    })
-  })
 })

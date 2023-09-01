@@ -1,4 +1,4 @@
-import { sleep } from "../utils"
+import { sleep } from "../utils/index"
 import { API_KEY, STATUS_OK } from "../utils/constants"
 
 /**
