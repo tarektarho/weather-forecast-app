@@ -8,17 +8,9 @@ const AdditionalWidgetSkeleton: React.FC = () => {
       <SkeletonElement type="long-title" />
       <div className="extra-info-container">
         {/* Sunrise information */}
-        <div className="skeleton widget weather-extra bg-extra1">
-          <SkeletonElement type="icon-small" />
-          {/* Display the sunrise time */}
-          <SkeletonElement type="long-text" />
-        </div>
+        <SkeletonElement type="skeleton widget weather-extra bg-extra4" />
         {/* Sunset information */}
-        <div className="skeleton widget weather-extra bg-extra4 mb-0">
-          <SkeletonElement type="icon-small" />
-          {/* Display the sunset time */}
-          <SkeletonElement type="long-text" />
-        </div>
+        <SkeletonElement type="skeleton widget weather-extra bg-extra4 mb-0" />
       </div>
     </div>
   )
