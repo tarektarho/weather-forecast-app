@@ -88,6 +88,15 @@ describe("Search", () => {
       }) as any
     })
 
+    vi.spyOn(AirPollutionService, "getAirPollutionByCity").mockImplementation(
+      () => {
+        return Promise.resolve({
+          ...fetchAirPolutionMockedResponse,
+          name: "Rotterdam",
+        }) as any
+      },
+    )
+
     render(<Dashboard />, { wrapper })
 
     const searchInput = screen.getByTestId("input-search-by-city") // input data-testid=input-search-by-city

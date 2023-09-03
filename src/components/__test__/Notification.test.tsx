@@ -81,7 +81,6 @@ describe("Notification", () => {
     })
 
     // to search by mocks
-
     vi.spyOn(ForecastService, "getForecastByCity").mockImplementation(() => {
       return Promise.reject({ message: "city not found" })
     })
@@ -89,6 +88,12 @@ describe("Notification", () => {
     vi.spyOn(WeatherService, "getWeatherByCity").mockImplementation(() => {
       return Promise.reject({ message: "city not found" })
     })
+
+    vi.spyOn(AirPollutionService, "getAirPollutionByCity").mockImplementation(
+      () => {
+        return Promise.reject({ message: "city not found" })
+      },
+    )
 
     render(<Dashboard />, { wrapper })
 

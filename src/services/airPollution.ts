@@ -1,4 +1,9 @@
-import { ERROR_INVALID_LAT_LON, BASE_URL_WEATHER } from "../utils/constants"
+import {
+  ERROR_INVALID_LAT_LON,
+  BASE_URL_WEATHER,
+  ERROR_INVALID_CITY,
+  GEO_URL,
+} from "../utils/constants"
 import { fetchData } from "./common"
 import AirPollutionData from "../types/airPollution"
 
@@ -27,4 +32,40 @@ export const getAirPollutionByLatLon = async (
 
   // Fetch air pollution data using common fetchData function
   return (await fetchData(baseUrl, params)) as Promise<AirPollutionData>
+}
+
+/**
+ * Fetch air pollution data for a specific city.
+ *
+ * @param {string} city - The name of the city to retrieve air pollution data for.
+ * @returns {Promise<AirPollutionData>} A Promise containing air pollution data for the city.
+ * @throws {Error} Throws an error if the city name is empty or invalid.
+ */
+export const getAirPollutionByCity = async (
+  city: string,
+): Promise<AirPollutionData> => {
+  // Trim leading and trailing spaces from the city name
+  const trimmedCity = city.trim()
+
+  // Check if the city name is empty or contains only spaces
+  if (!trimmedCity) {
+    throw new Error(ERROR_INVALID_CITY)
+  }
+
+  // Encode the city name for use in the query parameters
+  const encodedCity = encodeURIComponent(trimmedCity)
+
+  // Build the query parameters
+  const params = `q=${encodedCity}&limit=1`
+
+  // Fetch geolocation data for the city
+  const [firstResult] = await fetchData(GEO_URL, params)
+
+  // Check if no geolocation data was found for the city
+  if (!firstResult) {
+    throw new Error(ERROR_INVALID_CITY)
+  }
+
+  // Retrieve air pollution data using the obtained latitude and longitude
+  return getAirPollutionByLatLon(firstResult.lat, firstResult.lon)
 }

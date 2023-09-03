@@ -1,5 +1,8 @@
-import { getAirPollutionByLatLon } from "../airPollution"
-import { ERROR_INVALID_LAT_LON } from "../../utils/constants"
+import { getAirPollutionByLatLon, getAirPollutionByCity } from "../airPollution"
+import {
+  ERROR_INVALID_LAT_LON,
+  ERROR_INVALID_CITY,
+} from "../../utils/constants"
 
 export const fetchAirPolutionMockedResponse = {
   coord: {
@@ -39,6 +42,7 @@ describe("airPollution service", () => {
       async () => await getAirPollutionByLatLon(0, 0),
     ).rejects.toThrowError(ERROR_INVALID_LAT_LON)
   })
+
   test("load airPollution data as expected", async () => {
     fetchMock.mockResponseOnce(JSON.stringify(fetchAirPolutionMockedResponse))
     const weatherServiceResponse = await getAirPollutionByLatLon(
@@ -46,5 +50,20 @@ describe("airPollution service", () => {
       longitude,
     )
     expect(weatherServiceResponse).toEqual(fetchAirPolutionMockedResponse)
+  })
+  test("should throw an error when city is not found", async () => {
+    await expect(() => getAirPollutionByCity("")).rejects.toThrowError(
+      ERROR_INVALID_CITY,
+    )
+  })
+
+  it("should throw an error for an invalid city", async () => {
+    // Mock the fetchData function to return an empty array
+    fetchMock.mockResponseOnce(JSON.stringify([]))
+
+    // Call the function with an invalid city name
+    await expect(getAirPollutionByCity("InvalidCity")).rejects.toThrowError(
+      ERROR_INVALID_CITY,
+    )
   })
 })

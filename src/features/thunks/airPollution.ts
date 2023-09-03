@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import * as AirPollutionService from "../../services/airPollution"
-import { Coordinates } from "./types"
+import { CityPayload, Coordinates } from "./types"
 import AirPollutionData from "../../types/airPollution"
 
 /**
@@ -18,6 +18,17 @@ export const getAirPollutionByLatLon = createAsyncThunk<
   async ({ lat, lon }: Coordinates, { rejectWithValue }) => {
     try {
       return await AirPollutionService.getAirPollutionByLatLon(lat, lon)
+    } catch (error) {
+      return rejectWithValue(error)
+    }
+  },
+)
+
+export const getAirPollutionByCity = createAsyncThunk(
+  "airPollution/getAirPollutionByCity",
+  async ({ city }: CityPayload, { rejectWithValue }) => {
+    try {
+      return await AirPollutionService.getAirPollutionByCity(city)
     } catch (error) {
       return rejectWithValue(error)
     }

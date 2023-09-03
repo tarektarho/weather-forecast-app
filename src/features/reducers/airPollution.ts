@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { getAirPollutionByLatLon } from "../thunks/airPollution"
+import {
+  getAirPollutionByLatLon,
+  getAirPollutionByCity,
+} from "../thunks/airPollution"
 import AirPollutionData from "../../types/airPollution"
 
 // Define the state structure for the airPollution slice
@@ -37,6 +40,18 @@ export const airPollutionSlice = createSlice({
         state.data = action.payload // Update air pollution data in the state
       })
       .addCase(getAirPollutionByLatLon.rejected, (state, action) => {
+        const { message } = action.payload as RejectedActionPayload
+        state.error = message // Set error message from the rejected payload
+        state.loading = false // Turn off loading flag
+      })
+      .addCase(getAirPollutionByCity.pending, (state) => {
+        state.loading = true // Set loading flag to indicate data fetching
+      })
+      .addCase(getAirPollutionByCity.fulfilled, (state, action) => {
+        state.loading = false // Turn off loading flag
+        state.data = action.payload // Update forecast data in the state
+      })
+      .addCase(getAirPollutionByCity.rejected, (state, action) => {
         const { message } = action.payload as RejectedActionPayload
         state.error = message // Set error message from the rejected payload
         state.loading = false // Turn off loading flag
