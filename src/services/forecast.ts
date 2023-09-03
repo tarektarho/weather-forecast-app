@@ -23,7 +23,7 @@ export const getForecastByCity = async (
 
   // Build the base URL and query parameters
   const baseUrl = BASE_URL_WEATHER + "/forecast"
-  const params = `q=${city_}`
+  const params = `q=${encodeURIComponent(city_)}`
 
   // Fetch and return forecast data using common fetchData function
   return (await fetchData(baseUrl, params)) as Promise<ForecastData>

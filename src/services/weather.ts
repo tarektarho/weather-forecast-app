@@ -21,7 +21,7 @@ export const getWeatherByCity = async (city_: string): Promise<WeatherData> => {
 
   // Build the base URL and query parameters
   const baseUrl = BASE_URL_WEATHER + "/weather"
-  const params = `q=${city_}`
+  const params = `q=${encodeURIComponent(city_)}`
 
   // Fetch and return weather data using common fetchData function
   return (await fetchData(baseUrl, params)) as Promise<WeatherData>
