@@ -40,7 +40,7 @@ describe("forecastReducer", () => {
       ...forecastServiceMockedResponse,
     })
     const store = configureStore({ reducer: forecastSlice.reducer })
-    await store.dispatch(getForecastByCity({ city: "Miami" }))
+    await store.dispatch(getForecastByCity({ city: "London" }))
     expect(store.getState()).toEqual({
       loading: false,
       error: "",
@@ -53,7 +53,7 @@ describe("forecastReducer", () => {
       message: "my error",
     })
     const store = configureStore({ reducer: forecastSlice.reducer })
-    await store.dispatch(getForecastByCity({ city: "Miami" }))
+    await store.dispatch(getForecastByCity({ city: "London" }))
     expect(store.getState()).toEqual({
       loading: false,
       error: "my error",

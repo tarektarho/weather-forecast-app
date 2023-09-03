@@ -109,6 +109,7 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
     if (city && city !== "") {
       dispatch(WeatherThunkActions.getWeatherByCity({ city }))
       dispatch(ForecastThunkActions.getForecastByCity({ city }))
+      dispatch(AirPollutionThunkActions.getAirPollutionByCity({ city }))
     }
   }
 

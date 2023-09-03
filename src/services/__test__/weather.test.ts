@@ -79,17 +79,18 @@ describe("forecast service", () => {
     expect(weatherApiResponse).toEqual(weatherApiCityInvalidMockedResponse)
   })
 
+  test("should return weather data based on city name", async () => {
+    fetchMock.mockResponseOnce(JSON.stringify(weatherServiceMockedResponse))
+    const response = await getWeatherByCity(city)
+    expect(response).toEqual(weatherServiceMockedResponse)
+  })
+
   test("should throw an error for invalid lon & lat", async () => {
     await expect(() => getWeatherByLatLon(0, 0)).rejects.toThrowError(
       ERROR_INVALID_LAT_LON,
     )
   })
 
-  test("should return weather data based on city name", async () => {
-    fetchMock.mockResponseOnce(JSON.stringify(weatherServiceMockedResponse))
-    const response = await getWeatherByCity(city)
-    expect(response).toEqual(weatherServiceMockedResponse)
-  })
   test("should return weather data based on lon & lat", async () => {
     fetchMock.mockResponseOnce(JSON.stringify(weatherServiceMockedResponse))
     const response = await getWeatherByLatLon(latitude, longitude)

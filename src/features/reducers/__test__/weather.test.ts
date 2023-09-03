@@ -42,7 +42,7 @@ it("should post data fulfilled with city", async () => {
     ...weatherServiceMockedResponse,
   })
   const store = configureStore({ reducer: weatherSlice.reducer })
-  await store.dispatch(getWeatherByCity({ city: "Miami" }))
+  await store.dispatch(getWeatherByCity({ city: "London" }))
   expect(store.getState()).toEqual({
     loading: false,
     error: undefined,
