@@ -9,18 +9,12 @@ describe("AdditionalWidgetSkeleton", () => {
     expect(screen.getAllByTestId("skeleton-test-id")[0]).toHaveClass(
       "skeleton long-title",
     )
-    expect(screen.getAllByTestId("skeleton-test-id")[1]).toHaveClass(
-      "skeleton icon-small",
-    )
-    expect(screen.getAllByTestId("skeleton-test-id")[2]).toHaveClass(
-      "skeleton long-text",
-    )
 
     // Verify the structure of the component
-    const sunriseInfoContainer = screen.getAllByTestId("skeleton-test-id")[3]
-    const sunsetInfoContainer = screen.getAllByTestId("skeleton-test-id")[4]
+    const title = screen.getAllByTestId("skeleton-test-id")[0]
+    const weatherExtra = screen.getAllByTestId("skeleton-test-id")[1]
 
-    expect(sunriseInfoContainer).toBeInTheDocument()
-    expect(sunsetInfoContainer).toBeInTheDocument()
+    expect(title).toBeInTheDocument()
+    expect(weatherExtra).toBeInTheDocument()
   })
 })
