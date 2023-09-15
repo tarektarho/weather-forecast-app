@@ -2,7 +2,7 @@ export const API_KEY: string = import.meta.env.VITE_WEATHER_API_KEY
 export const BASE_URL_WEATHER: string =
   "https://api.openweathermap.org/data/2.5"
 
-export const GEO_URL: string = "http://api.openweathermap.org/geo/1.0/direct"
+export const GEO_URL: string = "https://api.openweathermap.org/geo/1.0/direct"
 
 export const URL_PARAM_LAT: string = "lat"
 export const URL_PARAM_LON: string = "lon"
