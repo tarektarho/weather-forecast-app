@@ -54,8 +54,6 @@ The application empowers users to search for weather forecasts in various cities
   If you faced any issues with API_KEY for example it's expired or not found then you have to genreate a new one using the sign up page [sign_up](https://home.openweathermap.org/users/sign_up)
   then replace `VITE_WEATHER_API_KEY` with your API_KEY
 
-  For testing the app currently is using the following key = `5b0c24dafae110f702753f6d13a704fb`
-
 - Run test:
 
   ```sh
@@ -102,4 +100,4 @@ These dependencies and devDependencies are commonly used in modern React and Typ
 - [ ] Internationalization(i18n)
 - [ ] Dark/Light Mode
 - [ ] Split the style per component
-- [ ] Store the API key in github secrets
+- [x] Store the API key in github secrets
