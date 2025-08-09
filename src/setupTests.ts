@@ -2,6 +2,7 @@
 import "@testing-library/jest-dom"
 import { fetch } from "cross-fetch"
 import createFetchMock from "vitest-fetch-mock"
+import { vi } from "vitest"
 
 vi.mock("./utils/index", async (importOriginal) => {
   const mod = await importOriginal()
@@ -12,7 +13,7 @@ vi.mock("./utils/index", async (importOriginal) => {
   }
 })
 const fetchMocker = createFetchMock(vi)
-global.fetch = fetch
+globalThis.fetch = fetch
 vi.mock("node-fetch")
 // sets globalThis.fetch and globalThis.fetchMock to our mocked version
 fetchMocker.enableMocks()

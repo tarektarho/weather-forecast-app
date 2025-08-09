@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react"
+import React, { createContext, useContext } from "react"
 import WeatherData from "../types/weather"
 import ForecastData from "../types/forecast"
 import AirPollutionData from "../types/airPollution"

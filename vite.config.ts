@@ -14,9 +14,23 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "jsdom",
-    maxThreads: 1,
-    minThreads: 1,
     setupFiles: "src/setupTests",
     mockReset: true,
+    coverage: {
+      provider: "v8",
+      exclude: [
+        "node_modules/**",
+        "build/**",
+        "dist/**",
+        "src/setupTests.ts",
+        "src/vite-env.d.ts",
+        "**/*.test.{ts,tsx}",
+        "**/*.config.{ts,js}",
+        "**/*.d.ts",
+      ],
+      include: ["src/**/*.{ts,tsx}"],
+      reporter: ["text", "json", "html"],
+      reportsDirectory: "./coverage",
+    },
   },
 })
