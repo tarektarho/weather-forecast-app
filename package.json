@@ -17,7 +17,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^2.8.2",
+    "@reduxjs/toolkit": "^2.9.0",
     "cross-fetch": "^4.1.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
