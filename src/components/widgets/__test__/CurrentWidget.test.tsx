@@ -5,7 +5,7 @@ import {
   WeatherContextValue,
 } from "../../../providers/weatherContext"
 import CurrentWidget from "../CurrentWidget"
-import { weatherContextMockedData } from "./DailyWidget.test"
+import { weatherContextMockedData } from "./testUtils"
 
 interface WeatherContextMockedValue extends WeatherContextValue {}
 

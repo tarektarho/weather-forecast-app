@@ -1,7 +1,7 @@
 import React from "react"
 import { useWeather } from "../../providers/weatherContext"
 import DailyDetail from "./DailyDetail"
-import ForecastData from "../../types/forecast"
+import ForecastData, { ForecastItem } from "../../types/forecast"
 import DailyWidgetSkeleton from "../common/skeletons/DailyWidgetSkeleton"
 
 const DailyWidget: React.FC = () => {
@@ -12,7 +12,21 @@ const DailyWidget: React.FC = () => {
     return <DailyWidgetSkeleton />
   }
 
-  if (forecastData.loading || Object.keys(forecastData.data).length === 0) {
+  // Type guard to check if data is ForecastData
+  const isForecastData = (data: unknown): data is ForecastData => {
+    return (
+      typeof data === "object" &&
+      data !== null &&
+      "list" in data &&
+      Array.isArray((data as ForecastData).list)
+    )
+  }
+
+  if (
+    forecastData.loading ||
+    !isForecastData(forecastData.data) ||
+    Object.keys(forecastData.data).length === 0
+  ) {
     return <DailyWidgetSkeleton />
   }
 
@@ -27,7 +41,7 @@ const DailyWidget: React.FC = () => {
       <div className="daily-container">
         <div className="daily-wrapper">
           {forecastList &&
-            forecastList.map((item: ForecastData["list"]) => (
+            forecastList.map((item: ForecastItem) => (
               <DailyDetail key={item.dt} data={item} />
             ))}
         </div>

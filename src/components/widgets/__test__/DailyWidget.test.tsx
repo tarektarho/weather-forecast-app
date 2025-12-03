@@ -1,32 +1,13 @@
 import { render, screen, waitFor } from "@testing-library/react"
-import { weatherServiceMockedResponse } from "../../../services/__test__/weather.test"
+import { forecastServiceMockedResponse } from "../../../services/__test__/forecast.test"
 import {
   WeatherContext,
   WeatherContextValue,
 } from "../../../providers/weatherContext"
 import DailyWidget from "../DailyWidget"
-import { SetStateAction } from "react"
+import { weatherContextMockedData } from "./testUtils"
 
 interface WeatherContextMockedValue extends WeatherContextValue {}
-export const weatherContextMockedData = {
-  forecastData: {
-    loading: true,
-    data: {},
-  },
-  city: "",
-  setCity: (value: SetStateAction<string>): void => {},
-  searchByCity: (): void => {},
-  weatherData: undefined,
-  airPollutionData: undefined,
-  copyShareUrl: (): void => {},
-  modal: false,
-  hideModal: (): void => {},
-  error: undefined,
-  hideError: (): void => {},
-  info: undefined,
-  setInfo: (value: SetStateAction<string | undefined>): void => {},
-  setError: (value: SetStateAction<string | boolean | undefined>): void => {},
-}
 
 describe("DailyWidget", () => {
   const contextValueMocked: WeatherContextMockedValue = weatherContextMockedData
@@ -67,7 +48,7 @@ describe("DailyWidget", () => {
       ...weatherContextMockedData,
       forecastData: {
         loading: false,
-        data: weatherServiceMockedResponse,
+        data: forecastServiceMockedResponse,
       },
     })
     const title = screen.getByTestId("daily-widget-title")

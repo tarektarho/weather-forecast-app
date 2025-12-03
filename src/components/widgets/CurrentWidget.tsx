@@ -4,6 +4,7 @@ import { getWeatherIcon, resetApp, convertKelvinToCelsius } from "../../utils"
 import shareIcon from "../../assets/images/share.png"
 import resetIcon from "../../assets/images/reset.png"
 import CurrentWidgetSkeleton from "../common/skeletons/CurrentWidgetSkeleton"
+import WeatherData from "../../types/weather"
 
 const CurrentWidget: React.FC = () => {
   // Get weatherData and copyShareUrl from the weather context
@@ -14,8 +15,19 @@ const CurrentWidget: React.FC = () => {
     return <CurrentWidgetSkeleton />
   }
 
-  // If weatherData is loading or data is empty, return.
-  if (weatherData.loading || Object.keys(weatherData.data).length === 0) {
+  // Type guard to check if data is WeatherData
+  const isWeatherData = (data: unknown): data is WeatherData => {
+    return (
+      typeof data === "object" &&
+      data !== null &&
+      "main" in data &&
+      "name" in data &&
+      "weather" in data
+    )
+  }
+
+  // If weatherData is loading or data is not valid, return.
+  if (weatherData.loading || !isWeatherData(weatherData.data)) {
     return <CurrentWidgetSkeleton />
   }
 

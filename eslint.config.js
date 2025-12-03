@@ -7,6 +7,7 @@ import tsParser from "@typescript-eslint/parser"
 import react from "eslint-plugin-react"
 import prettier from "eslint-plugin-prettier"
 import testingLibrary from "eslint-plugin-testing-library"
+import reactCompiler from "eslint-plugin-react-compiler"
 
 export default [
   {
@@ -31,6 +32,7 @@ export default [
       react,
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
+      "react-compiler": reactCompiler,
       "@typescript-eslint": tseslint,
       prettier,
     },
@@ -39,6 +41,7 @@ export default [
       "prettier/prettier": "error",
       "react/jsx-no-target-blank": "off",
       "react/react-in-jsx-scope": "off",
+      "react-compiler/react-compiler": "error",
       "@typescript-eslint/no-explicit-any": "warn",
       "@typescript-eslint/no-unused-vars": "warn",
     },

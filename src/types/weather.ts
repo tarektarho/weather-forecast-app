@@ -39,7 +39,7 @@ interface SysInfo {
 
 interface WeatherData {
   coord: Coord
-  weather: WeatherInfo
+  weather: WeatherInfo[]
   base: string
   main: MainInfo
   visibility: number

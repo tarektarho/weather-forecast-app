@@ -7,12 +7,9 @@ import * as AirPollutionThunkActions from "../features/thunks/airPollution"
 import * as WeatherActions from "../features/reducers/weather"
 import * as Constants from "../utils/constants"
 import * as Utils from "../utils/index"
-import WeatherData from "../types/weather"
 import { Coordinates } from "../features/thunks/types"
-import AirPollutionData from "../types/airPollution"
-import ForecastData from "../types/forecast"
-import { Dispatch } from "redux"
 import { ERROR_BROWSER_GEOLOCATION_OFF } from "../utils/constants"
+import { AppDispatch, RootState } from "../store/types"
 
 interface WeatherProviderProps {
   children: React.ReactNode
@@ -22,16 +19,10 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
   children,
 }) => {
   // Redux state management
-  const dispatch: Dispatch<any> = useDispatch()
-  const weatherData = useSelector(
-    (state: { weather: WeatherData }) => state.weather,
-  )
-  const forecastData = useSelector(
-    (state: { forecast: ForecastData }) => state.forecast,
-  )
-  const airPollutionData = useSelector(
-    (state: { airPollution: AirPollutionData }) => state.airPollution,
-  )
+  const dispatch: AppDispatch = useDispatch<AppDispatch>()
+  const weatherData = useSelector((state: RootState) => state.weather)
+  const forecastData = useSelector((state: RootState) => state.forecast)
+  const airPollutionData = useSelector((state: RootState) => state.airPollution)
 
   // Component states
   const [error, setError] = useState<string | undefined>(undefined)
@@ -81,8 +72,8 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
         setLon(longitude)
         Utils.savePosition(latitude, longitude)
       }
-    } catch (error: any) {
-      if (error.message) {
+    } catch (error) {
+      if (error instanceof Error && error.message) {
         setError(String(error.message))
       } else {
         setError(ERROR_BROWSER_GEOLOCATION_OFF)

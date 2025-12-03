@@ -31,7 +31,7 @@ interface SysInfo {
   pod: string
 }
 
-interface ForecastItem {
+export interface ForecastItem {
   dt: number
   main: MainInfo
   weather: WeatherInfo[]
@@ -47,7 +47,8 @@ interface ForecastData {
   cod: string
   message: number
   cnt: number
-  list: ForecastItem
+  list: ForecastItem[]
+  loading?: boolean
 }
 
 export default ForecastData

@@ -1,7 +1,28 @@
-import React, { createContext, useContext } from "react"
+import React, { createContext, useContext, Dispatch } from "react"
 import WeatherData from "../types/weather"
 import ForecastData from "../types/forecast"
 import AirPollutionData from "../types/airPollution"
+
+/**
+ * Redux state wrappers for data with loading and error states
+ */
+export interface WeatherState {
+  loading: boolean
+  error?: string | boolean
+  data: WeatherData | {}
+}
+
+export interface ForecastState {
+  loading: boolean
+  error?: string
+  data: ForecastData | {}
+}
+
+export interface AirPollutionState {
+  loading: boolean
+  error?: string
+  data: AirPollutionData | {}
+}
 
 /**
  * Interface defining the shape of the context value used in the WeatherProvider.
@@ -10,17 +31,17 @@ export interface WeatherContextValue {
   city: string
   setCity: React.Dispatch<React.SetStateAction<string>>
   searchByCity: () => void
-  weatherData: WeatherData | any | undefined // Data for weather information
-  forecastData: ForecastData | any | undefined // Data for forecast information
-  airPollutionData: AirPollutionData | any | undefined // Data for air pollution information
+  weatherData: WeatherState // Data for weather information with loading state
+  forecastData: ForecastState // Data for forecast information with loading state
+  airPollutionData: AirPollutionState | undefined // Data for air pollution information with loading state
   copyShareUrl: () => void
   modal: boolean
   hideModal: () => void
   error: string | undefined
   hideError: () => void
   info: string | undefined
-  setInfo: React.Dispatch<React.SetStateAction<string | undefined>>
-  setError: React.Dispatch<React.SetStateAction<any>>
+  setInfo: Dispatch<React.SetStateAction<string | undefined>>
+  setError: Dispatch<React.SetStateAction<string | undefined>>
 }
 
 /**

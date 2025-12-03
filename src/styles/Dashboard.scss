@@ -464,6 +464,7 @@
 .weather-detail {
   .widget-actions {
     position: absolute;
+    padding: 10px;
     top: 8px;
     right: 0;
     display: flex;
@@ -496,6 +497,7 @@
   animation: pulse 1s ease-in-out infinite;
 
   @keyframes pulse {
+
     0%,
     100% {
       opacity: 1;

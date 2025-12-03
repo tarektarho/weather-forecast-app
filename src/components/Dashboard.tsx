@@ -22,7 +22,11 @@ const Dashboard: React.FC = () => {
     if (currentError) {
       return (
         <Notification
-          message={currentError}
+          message={
+            typeof currentError === "string"
+              ? currentError
+              : "An error occurred"
+          }
           hideNotification={hideError}
           type="error"
         />

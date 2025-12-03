@@ -14,11 +14,17 @@ const WeatherContextMockedData = {
     loading: true,
     data: {},
   },
+  forecastData: {
+    loading: true,
+    data: {},
+  },
+  airPollutionData: {
+    loading: true,
+    data: {},
+  },
   city: "",
   setCity: (value: SetStateAction<string>): void => {},
   searchByCity: (): void => {},
-  forecastData: undefined,
-  airPollutionData: undefined,
   copyShareUrl: (): void => {},
   modal: false,
   hideModal: (): void => {},
@@ -26,7 +32,7 @@ const WeatherContextMockedData = {
   hideError: (): void => {},
   info: undefined,
   setInfo: (value: SetStateAction<string | undefined>): void => {},
-  setError: (value: SetStateAction<string | boolean | undefined>): void => {},
+  setError: (value: SetStateAction<string | undefined>): void => {},
 }
 
 describe("AdditionalWidget", () => {
