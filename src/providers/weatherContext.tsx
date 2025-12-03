@@ -30,7 +30,8 @@ export interface AirPollutionState {
 export interface WeatherContextValue {
   city: string
   setCity: React.Dispatch<React.SetStateAction<string>>
-  searchByCity: () => void
+  // eslint-disable-next-line no-unused-vars
+  searchByCity: (city?: string) => void
   weatherData: WeatherState // Data for weather information with loading state
   forecastData: ForecastState // Data for forecast information with loading state
   airPollutionData: AirPollutionState | undefined // Data for air pollution information with loading state

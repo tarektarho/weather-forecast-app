@@ -99,14 +99,17 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
   }, [dispatch, lat, lon])
 
   // Search weather and forecast data by city name with optimistic updates
-  const searchByCity = () => {
-    if (city && city !== "") {
+  const searchByCity = (cityParam?: string) => {
+    const searchCity = cityParam || city
+    if (searchCity && searchCity !== "") {
       // React 19: Set optimistic state immediately for better UX
-      setOptimisticCity(city)
+      setOptimisticCity(searchCity)
 
-      dispatch(WeatherThunkActions.getWeatherByCity({ city }))
-      dispatch(ForecastThunkActions.getForecastByCity({ city }))
-      dispatch(AirPollutionThunkActions.getAirPollutionByCity({ city }))
+      dispatch(WeatherThunkActions.getWeatherByCity({ city: searchCity }))
+      dispatch(ForecastThunkActions.getForecastByCity({ city: searchCity }))
+      dispatch(
+        AirPollutionThunkActions.getAirPollutionByCity({ city: searchCity }),
+      )
     }
   }
 

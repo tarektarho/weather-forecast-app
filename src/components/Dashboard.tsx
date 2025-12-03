@@ -72,8 +72,8 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <>
-      {/* React 19: Document metadata for SEO */}
+    <div className="main-container" data-testid="main-container">
+      {/* React 19: Document metadata for SEO - automatically hoisted to <head> */}
       <title>
         {locationName
           ? `Weather in ${locationName} - WeatherApp`
@@ -87,40 +87,37 @@ const Dashboard: React.FC = () => {
             : "Get real-time weather forecasts, air pollution data, and 5-day weather forecasts for any location."
         }
       />
-
-      <div className="main-container" data-testid="main-container">
-        <div className="main-wrapper">
-          <div className="main-content">
-            <div className="main-title">
-              <Search />
-              <div className="title">
-                <h1>WeatherApp</h1>
-              </div>
-            </div>
-            {/* Forecast 5 days */}
-            <DailyWidget />
-            <div className="flex-wrapper">
-              {/* More data from OpenWeather */}
-              <div className="flex-item widget">
-                <AdditionalWidget />
-              </div>
-              {/* AirPollution */}
-              <div className="flex-item widget">
-                <AirPollutionWidget />
-              </div>
+      <div className="main-wrapper">
+        <div className="main-content">
+          <div className="main-title">
+            <Search />
+            <div className="title">
+              <h1>WeatherApp</h1>
             </div>
           </div>
-          {/* Current weather detail */}
-          <div className="detail-content">
-            <CurrentWidget />
+          {/* Forecast 5 days */}
+          <DailyWidget />
+          <div className="flex-wrapper">
+            {/* More data from OpenWeather */}
+            <div className="flex-item widget">
+              <AdditionalWidget />
+            </div>
+            {/* AirPollution */}
+            <div className="flex-item widget">
+              <AirPollutionWidget />
+            </div>
           </div>
         </div>
-
-        {renderErrorIfAny()}
-        {renderModalIfNeeded()}
-        {renderNotificationIfAny()}
+        {/* Current weather detail */}
+        <div className="detail-content">
+          <CurrentWidget />
+        </div>
       </div>
-    </>
+
+      {renderErrorIfAny()}
+      {renderModalIfNeeded()}
+      {renderNotificationIfAny()}
+    </div>
   )
 }
 

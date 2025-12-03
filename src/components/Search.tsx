@@ -20,12 +20,12 @@ const Search: React.FC = () => {
       if (cityValue && cityValue.trim() !== "") {
         setCity(cityValue)
         startTransition(() => {
-          searchByCity()
+          searchByCity(cityValue)
         })
       }
       return { success: true }
     },
-    [searchByCity, setCity],
+    [searchByCity, setCity, startTransition],
   )
 
   const [, formAction, isFormPending] = useActionState(searchAction, {
@@ -70,12 +70,7 @@ const Search: React.FC = () => {
         onChange={(e) => setCity(e.target.value)}
         disabled={isLoading}
       />
-      <button
-        type="button"
-        onClick={handleSearch}
-        data-testid="btn-search"
-        disabled={isLoading}
-      >
+      <button type="submit" data-testid="btn-search" disabled={isLoading}>
         {isLoading ? "Searching..." : "Search"}
       </button>
     </form>
