@@ -16,6 +16,18 @@ const Dashboard: React.FC = () => {
   const { modal, hideModal, weatherData, error, hideError, info, setInfo } =
     useWeather()
 
+  // React 19: Extract weather info for document metadata
+  const hasWeatherData =
+    weatherData?.data && Object.keys(weatherData.data).length > 0
+  const locationName =
+    hasWeatherData && "name" in weatherData.data ? weatherData.data.name : null
+  const weatherDescription =
+    hasWeatherData &&
+    "weather" in weatherData.data &&
+    Array.isArray(weatherData.data.weather)
+      ? weatherData.data.weather[0]?.description
+      : null
+
   // Render an error notification if there's an error message
   const renderErrorIfAny = () => {
     const currentError = weatherData?.error || error
@@ -60,38 +72,55 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <div className="main-container" data-testid="main-container">
-      <div className="main-wrapper">
-        <div className="main-content">
-          <div className="main-title">
-            <Search />
-            <div className="title">
-              <h1>WeatherApp</h1>
-            </div>
-          </div>
-          {/* Forecast 5 days */}
-          <DailyWidget />
-          <div className="flex-wrapper">
-            {/* More data from OpenWeather */}
-            <div className="flex-item widget">
-              <AdditionalWidget />
-            </div>
-            {/* AirPollution */}
-            <div className="flex-item widget">
-              <AirPollutionWidget />
-            </div>
-          </div>
-        </div>
-        {/* Current weather detail */}
-        <div className="detail-content">
-          <CurrentWidget />
-        </div>
-      </div>
+    <>
+      {/* React 19: Document metadata for SEO */}
+      <title>
+        {locationName
+          ? `Weather in ${locationName} - WeatherApp`
+          : "WeatherApp - Real-time Weather Forecast"}
+      </title>
+      <meta
+        name="description"
+        content={
+          weatherDescription
+            ? `Current weather: ${weatherDescription}. Get real-time weather forecasts, air pollution data, and 5-day forecasts.`
+            : "Get real-time weather forecasts, air pollution data, and 5-day weather forecasts for any location."
+        }
+      />
 
-      {renderErrorIfAny()}
-      {renderModalIfNeeded()}
-      {renderNotificationIfAny()}
-    </div>
+      <div className="main-container" data-testid="main-container">
+        <div className="main-wrapper">
+          <div className="main-content">
+            <div className="main-title">
+              <Search />
+              <div className="title">
+                <h1>WeatherApp</h1>
+              </div>
+            </div>
+            {/* Forecast 5 days */}
+            <DailyWidget />
+            <div className="flex-wrapper">
+              {/* More data from OpenWeather */}
+              <div className="flex-item widget">
+                <AdditionalWidget />
+              </div>
+              {/* AirPollution */}
+              <div className="flex-item widget">
+                <AirPollutionWidget />
+              </div>
+            </div>
+          </div>
+          {/* Current weather detail */}
+          <div className="detail-content">
+            <CurrentWidget />
+          </div>
+        </div>
+
+        {renderErrorIfAny()}
+        {renderModalIfNeeded()}
+        {renderNotificationIfAny()}
+      </div>
+    </>
   )
 }
 

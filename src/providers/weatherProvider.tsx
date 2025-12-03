@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useOptimistic } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { WeatherContext } from "./weatherContext"
 import * as WeatherThunkActions from "../features/thunks/weather"
@@ -29,6 +29,9 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
   const [info, setInfo] = useState<string | undefined>(undefined)
   const [modal, setModal] = useState<boolean>(true)
   const [city, setCity] = useState<string>("")
+
+  // React 19: useOptimistic for immediate UI updates during search
+  const [optimisticCity, setOptimisticCity] = useOptimistic(city)
   const [lat, setLat] = useState<number | undefined>(undefined)
   const [lon, setLon] = useState<number | undefined>(undefined)
 
@@ -95,9 +98,12 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
     }
   }, [dispatch, lat, lon])
 
-  // Search weather and forecast data by city name
+  // Search weather and forecast data by city name with optimistic updates
   const searchByCity = () => {
     if (city && city !== "") {
+      // React 19: Set optimistic state immediately for better UX
+      setOptimisticCity(city)
+
       dispatch(WeatherThunkActions.getWeatherByCity({ city }))
       dispatch(ForecastThunkActions.getForecastByCity({ city }))
       dispatch(AirPollutionThunkActions.getAirPollutionByCity({ city }))
@@ -116,7 +122,7 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
     dispatch,
     error,
     hideError,
-    city,
+    city: optimisticCity,
     setCity,
     lat,
     setLat,
