@@ -1,5 +1,5 @@
 import React from "react"
-import ForecastItem from "../../types/forecast"
+import { ForecastItem } from "../../types/forecast"
 import {
   convertKelvinToCelsius,
   getDay,
@@ -9,7 +9,7 @@ import {
 } from "../../utils/index"
 
 interface DailyDetailProps {
-  data: ForecastItem["list"] | null
+  data: ForecastItem | null
 }
 
 const DailyDetail: React.FC<DailyDetailProps> = ({ data }) => {

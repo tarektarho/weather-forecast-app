@@ -146,7 +146,7 @@ export const getBrowserGeoPosition = (): Promise<{
 }> => {
   return new Promise((resolve, reject) => {
     if (!navigator.geolocation) {
-      return reject(ERROR_BROWSER_GEOLOCATION_OFF)
+      return reject(new Error(ERROR_BROWSER_GEOLOCATION_OFF))
     }
 
     navigator.geolocation.getCurrentPosition(
@@ -155,11 +155,12 @@ export const getBrowserGeoPosition = (): Promise<{
         if (latitude !== undefined && longitude !== undefined) {
           return resolve({ latitude, longitude })
         } else {
-          return reject("Geolocation position is undefined.")
+          return reject(new Error("Geolocation position is undefined."))
         }
       },
       (error) => {
-        return reject(error)
+        const errorMessage = error.message || `Geolocation error: ${error.code}`
+        return reject(new Error(errorMessage))
       },
     )
   })

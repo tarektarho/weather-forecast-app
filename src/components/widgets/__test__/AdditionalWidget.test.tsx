@@ -14,19 +14,28 @@ const WeatherContextMockedData = {
     loading: true,
     data: {},
   },
+  forecastData: {
+    loading: true,
+    data: {},
+  },
+  airPollutionData: {
+    loading: true,
+    data: {},
+  },
   city: "",
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   setCity: (value: SetStateAction<string>): void => {},
   searchByCity: (): void => {},
-  forecastData: undefined,
-  airPollutionData: undefined,
   copyShareUrl: (): void => {},
   modal: false,
   hideModal: (): void => {},
   error: undefined,
   hideError: (): void => {},
   info: undefined,
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   setInfo: (value: SetStateAction<string | undefined>): void => {},
-  setError: (value: SetStateAction<string | boolean | undefined>): void => {},
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+  setError: (value: SetStateAction<string | undefined>): void => {},
 }
 
 describe("AdditionalWidget", () => {

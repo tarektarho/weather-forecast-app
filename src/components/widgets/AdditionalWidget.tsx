@@ -4,6 +4,7 @@ import Sunrise from "../../assets/images/day-image.png"
 import Sunset from "../../assets/images/night-image.png"
 import { getHour } from "../../utils/index"
 import AdditionalWidgetSkeleton from "../common/skeletons/AdditionalWidgetSkeleton"
+import WeatherData from "../../types/weather"
 
 const AdditionalWidget: React.FC = () => {
   const { weatherData } = useWeather()
@@ -13,8 +14,18 @@ const AdditionalWidget: React.FC = () => {
     return <AdditionalWidgetSkeleton />
   }
 
+  // Type guard to check if data is WeatherData
+  const isWeatherData = (data: unknown): data is WeatherData => {
+    return (
+      typeof data === "object" &&
+      data !== null &&
+      "sys" in data &&
+      typeof (data as WeatherData).sys === "object"
+    )
+  }
+
   // Check if weather data is loading or not available
-  if (weatherData.loading || Object.keys(weatherData.data).length === 0) {
+  if (weatherData.loading || !isWeatherData(weatherData.data)) {
     return <AdditionalWidgetSkeleton />
   }
 

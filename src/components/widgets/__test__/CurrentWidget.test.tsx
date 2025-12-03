@@ -5,12 +5,18 @@ import {
   WeatherContextValue,
 } from "../../../providers/weatherContext"
 import CurrentWidget from "../CurrentWidget"
-import { weatherContextMockedData } from "./DailyWidget.test"
+import { weatherContextMockedData } from "./testUtils"
+import { SetStateAction } from "react"
 
 interface WeatherContextMockedValue extends WeatherContextValue {}
 
 describe("CurrentWidget", () => {
-  const contextValueMocked: WeatherContextMockedValue = weatherContextMockedData
+  const contextValueMocked: WeatherContextMockedValue = {
+    ...weatherContextMockedData,
+    setCity: vi.fn(),
+    setInfo: vi.fn(),
+    setError: vi.fn(),
+  }
   const renderComponent = (
     contextValue = contextValueMocked,
     propsValues: any = {},
@@ -35,6 +41,15 @@ describe("CurrentWidget", () => {
         loading: false,
         data: {},
       },
+      setCity: function (value: SetStateAction<string>): void {
+        throw new Error("Function not implemented." + value)
+      },
+      setInfo: function (value: SetStateAction<string | undefined>): void {
+        throw new Error("Function not implemented." + value)
+      },
+      setError: function (value: SetStateAction<string | undefined>): void {
+        throw new Error("Function not implemented." + value)
+      },
     })
     const skeletonComponent = screen.getByRole("current-widget-skeleton")
     await waitFor(() => expect(skeletonComponent).toBeVisible())
@@ -46,6 +61,15 @@ describe("CurrentWidget", () => {
       weatherData: {
         loading: false,
         data: weatherServiceMockedResponse,
+      },
+      setCity: function (value: SetStateAction<string>): void {
+        throw new Error("Function not implemented." + value)
+      },
+      setInfo: function (value: SetStateAction<string | undefined>): void {
+        throw new Error("Function not implemented." + value)
+      },
+      setError: function (value: SetStateAction<string | undefined>): void {
+        throw new Error("Function not implemented." + value)
       },
     })
     const title = screen.getByTestId("city-name")

@@ -16,13 +16,29 @@ const Dashboard: React.FC = () => {
   const { modal, hideModal, weatherData, error, hideError, info, setInfo } =
     useWeather()
 
+  // React 19: Extract weather info for document metadata
+  const hasWeatherData =
+    weatherData?.data && Object.keys(weatherData.data).length > 0
+  const locationName =
+    hasWeatherData && "name" in weatherData.data ? weatherData.data.name : null
+  const weatherDescription =
+    hasWeatherData &&
+    "weather" in weatherData.data &&
+    Array.isArray(weatherData.data.weather)
+      ? weatherData.data.weather[0]?.description
+      : null
+
   // Render an error notification if there's an error message
   const renderErrorIfAny = () => {
     const currentError = weatherData?.error || error
     if (currentError) {
       return (
         <Notification
-          message={currentError}
+          message={
+            typeof currentError === "string"
+              ? currentError
+              : "An error occurred"
+          }
           hideNotification={hideError}
           type="error"
         />
@@ -57,6 +73,20 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="main-container" data-testid="main-container">
+      {/* React 19: Document metadata for SEO - automatically hoisted to <head> */}
+      <title>
+        {locationName
+          ? `Weather in ${locationName} - WeatherApp`
+          : "WeatherApp - Real-time Weather Forecast"}
+      </title>
+      <meta
+        name="description"
+        content={
+          weatherDescription
+            ? `Current weather: ${weatherDescription}. Get real-time weather forecasts, air pollution data, and 5-day forecasts.`
+            : "Get real-time weather forecasts, air pollution data, and 5-day weather forecasts for any location."
+        }
+      />
       <div className="main-wrapper">
         <div className="main-content">
           <div className="main-title">

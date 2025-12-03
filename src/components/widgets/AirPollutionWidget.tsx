@@ -1,6 +1,7 @@
 import React from "react"
 import { useWeather } from "../../providers/weatherContext"
 import AirPollutionWidgetSkeleton from "../common/skeletons/AirPollutionWidgetSkeleton"
+import AirPollutionData from "../../types/airPollution"
 
 // https://openweathermap.org/api/air-pollution
 // Air pollution quality descriptions
@@ -15,11 +16,23 @@ const airPollutionQuality: Record<string, string> = {
 const AirPollutionWidget: React.FC = () => {
   const { airPollutionData } = useWeather()
 
-  // Check if air pollution data is loading or not available
-  if (
-    airPollutionData.loading ||
-    Object.keys(airPollutionData.data).length === 0
-  ) {
+  // Check if air pollution data is not available
+  if (!airPollutionData || !airPollutionData.data) {
+    return <AirPollutionWidgetSkeleton />
+  }
+
+  // Type guard to check if data is AirPollutionData
+  const isAirPollutionData = (data: unknown): data is AirPollutionData => {
+    return (
+      typeof data === "object" &&
+      data !== null &&
+      "list" in data &&
+      Array.isArray((data as AirPollutionData).list)
+    )
+  }
+
+  // Check if air pollution data is loading or not valid
+  if (airPollutionData.loading || !isAirPollutionData(airPollutionData.data)) {
     return <AirPollutionWidgetSkeleton />
   }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useOptimistic } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { WeatherContext } from "./weatherContext"
 import * as WeatherThunkActions from "../features/thunks/weather"
@@ -7,12 +7,9 @@ import * as AirPollutionThunkActions from "../features/thunks/airPollution"
 import * as WeatherActions from "../features/reducers/weather"
 import * as Constants from "../utils/constants"
 import * as Utils from "../utils/index"
-import WeatherData from "../types/weather"
 import { Coordinates } from "../features/thunks/types"
-import AirPollutionData from "../types/airPollution"
-import ForecastData from "../types/forecast"
-import { Dispatch } from "redux"
 import { ERROR_BROWSER_GEOLOCATION_OFF } from "../utils/constants"
+import { AppDispatch, RootState } from "../store/types"
 
 interface WeatherProviderProps {
   children: React.ReactNode
@@ -22,22 +19,19 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
   children,
 }) => {
   // Redux state management
-  const dispatch: Dispatch<any> = useDispatch()
-  const weatherData = useSelector(
-    (state: { weather: WeatherData }) => state.weather,
-  )
-  const forecastData = useSelector(
-    (state: { forecast: ForecastData }) => state.forecast,
-  )
-  const airPollutionData = useSelector(
-    (state: { airPollution: AirPollutionData }) => state.airPollution,
-  )
+  const dispatch: AppDispatch = useDispatch<AppDispatch>()
+  const weatherData = useSelector((state: RootState) => state.weather)
+  const forecastData = useSelector((state: RootState) => state.forecast)
+  const airPollutionData = useSelector((state: RootState) => state.airPollution)
 
   // Component states
   const [error, setError] = useState<string | undefined>(undefined)
   const [info, setInfo] = useState<string | undefined>(undefined)
   const [modal, setModal] = useState<boolean>(true)
   const [city, setCity] = useState<string>("")
+
+  // React 19: useOptimistic for immediate UI updates during search
+  const [optimisticCity, setOptimisticCity] = useOptimistic(city)
   const [lat, setLat] = useState<number | undefined>(undefined)
   const [lon, setLon] = useState<number | undefined>(undefined)
 
@@ -54,7 +48,7 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
   }
 
   // Get user's geographic position
-  const getGeoPositon = async () => {
+  const getGeoPosition = async () => {
     // Check if lat & lon are present in the URL
     if (
       Utils.getURLParam(Constants.URL_PARAM_LAT) &&
@@ -72,17 +66,17 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
     if (positionLocalStorage !== null) {
       setLat(positionLocalStorage.lat)
       setLon(positionLocalStorage.lon)
+      return
     }
 
+    // If no stored position, request browser geolocation
     try {
       const { latitude, longitude } = await Utils.getBrowserGeoPosition()
-      if (!positionLocalStorage) {
-        setLat(latitude)
-        setLon(longitude)
-        Utils.savePosition(latitude, longitude)
-      }
-    } catch (error: any) {
-      if (error.message) {
+      setLat(latitude)
+      setLon(longitude)
+      Utils.savePosition(latitude, longitude)
+    } catch (error) {
+      if (error instanceof Error && error.message) {
         setError(String(error.message))
       } else {
         setError(ERROR_BROWSER_GEOLOCATION_OFF)
@@ -91,7 +85,7 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
   }
 
   useEffect(() => {
-    getGeoPositon()
+    getGeoPosition()
   }, [])
 
   // Fetch data on lat and lon change
@@ -104,12 +98,18 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
     }
   }, [dispatch, lat, lon])
 
-  // Search weather and forecast data by city name
-  const searchByCity = () => {
-    if (city && city !== "") {
-      dispatch(WeatherThunkActions.getWeatherByCity({ city }))
-      dispatch(ForecastThunkActions.getForecastByCity({ city }))
-      dispatch(AirPollutionThunkActions.getAirPollutionByCity({ city }))
+  // Search weather and forecast data by city name with optimistic updates
+  const searchByCity = (cityParam?: string) => {
+    const searchCity = cityParam || city
+    if (searchCity && searchCity !== "") {
+      // React 19: Set optimistic state immediately for better UX
+      setOptimisticCity(searchCity)
+
+      dispatch(WeatherThunkActions.getWeatherByCity({ city: searchCity }))
+      dispatch(ForecastThunkActions.getForecastByCity({ city: searchCity }))
+      dispatch(
+        AirPollutionThunkActions.getAirPollutionByCity({ city: searchCity }),
+      )
     }
   }
 
@@ -125,7 +125,7 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
     dispatch,
     error,
     hideError,
-    city,
+    city: optimisticCity,
     setCity,
     lat,
     setLat,

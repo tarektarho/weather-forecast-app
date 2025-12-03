@@ -1,32 +1,11 @@
 import { render, screen } from "@testing-library/react"
 import DailyDetail from "../DailyDetail"
-import ForecastData from "../../../types/forecast"
-
-interface ForecastMockedData extends ForecastData {
-  ForecastItem: {
-    dt: number
-    clouds: { all: number }
-    main: {
-      temp: number
-      feels_like: number
-      temp_min: number
-      temp_max: number
-      pressure: number
-      sea_level: number
-      grnd_level: number
-      humidity: number
-      temp_kf: number
-    }
-    weather: [{ id: number; main: string; description: string; icon: string }]
-    wind: { speed: number; deg: number; gust: number }
-    sys: { pod: string }
-  }
-}
+import { ForecastItem } from "../../../types/forecast"
 
 describe("DailyDetail", () => {
   const description = "My description"
 
-  const dataMock: ForecastMockedData["list"] = {
+  const dataMock: ForecastItem = {
     dt: 1666048008,
     clouds: { all: 0 },
     main: {
