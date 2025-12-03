@@ -13,8 +13,16 @@ import { getLocalStorageItem } from "../utils"
 
 const Dashboard: React.FC = () => {
   // Fetch necessary data and functions from the WeatherContext
-  const { modal, hideModal, weatherData, error, hideError, info, setInfo } =
-    useWeather()
+  const {
+    modal,
+    hideModal,
+    weatherData,
+    error,
+    hideError,
+    info,
+    setInfo,
+    retryGeoLocation,
+  } = useWeather()
 
   // React 19: Extract weather info for document metadata
   const hasWeatherData =
@@ -32,15 +40,16 @@ const Dashboard: React.FC = () => {
   const renderErrorIfAny = () => {
     const currentError = weatherData?.error || error
     if (currentError) {
+      const errorMessage =
+        typeof currentError === "string" ? currentError : "An error occurred"
+      const isGeoLocationError = errorMessage.includes("location access")
+
       return (
         <Notification
-          message={
-            typeof currentError === "string"
-              ? currentError
-              : "An error occurred"
-          }
+          message={errorMessage}
           hideNotification={hideError}
           type="error"
+          onRetry={isGeoLocationError ? retryGeoLocation : undefined}
         />
       )
     }

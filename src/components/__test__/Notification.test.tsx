@@ -102,7 +102,6 @@ describe("Notification", () => {
 
     fireEvent.change(searchInput, { target: { value: "Amsterdam" } })
 
-    // eslint-disable-next-line testing-library/no-unnecessary-act
     await act(async () => {
       await fireEvent.click(searchButton)
     })
@@ -112,7 +111,6 @@ describe("Notification", () => {
     expect(text).toEqual("city not found")
     const closeIcon = screen.getByTestId("close-icon")
 
-    // eslint-disable-next-line testing-library/no-unnecessary-act
     await act(async () => {
       await fireEvent.click(closeIcon)
     })

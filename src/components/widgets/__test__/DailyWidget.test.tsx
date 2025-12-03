@@ -6,11 +6,17 @@ import {
 } from "../../../providers/weatherContext"
 import DailyWidget from "../DailyWidget"
 import { weatherContextMockedData } from "./testUtils"
+import { SetStateAction } from "react"
 
 interface WeatherContextMockedValue extends WeatherContextValue {}
 
 describe("DailyWidget", () => {
-  const contextValueMocked: WeatherContextMockedValue = weatherContextMockedData
+  const contextValueMocked: WeatherContextMockedValue = {
+    ...weatherContextMockedData,
+    setCity: vi.fn(),
+    setInfo: vi.fn(),
+    setError: vi.fn(),
+  }
 
   const renderComponent = (
     contextValue = contextValueMocked,
@@ -36,6 +42,15 @@ describe("DailyWidget", () => {
         loading: true,
         data: {},
       },
+      setCity: function (value: SetStateAction<string>): void {
+        throw new Error("Function not implemented." + value)
+      },
+      setInfo: function (value: SetStateAction<string | undefined>): void {
+        throw new Error("Function not implemented." + value)
+      },
+      setError: function (value: SetStateAction<string | undefined>): void {
+        throw new Error("Function not implemented." + value)
+      },
     })
     await waitFor(() => {
       const skeletonComponent = screen.getByRole("daily-widget-skeleton")
@@ -49,6 +64,15 @@ describe("DailyWidget", () => {
       forecastData: {
         loading: false,
         data: forecastServiceMockedResponse,
+      },
+      setCity: function (value: SetStateAction<string>): void {
+        throw new Error("Function not implemented." + value)
+      },
+      setInfo: function (value: SetStateAction<string | undefined>): void {
+        throw new Error("Function not implemented." + value)
+      },
+      setError: function (value: SetStateAction<string | undefined>): void {
+        throw new Error("Function not implemented." + value)
       },
     })
     const title = screen.getByTestId("daily-widget-title")

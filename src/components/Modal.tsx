@@ -1,5 +1,6 @@
 import React from "react"
 import MapImg from "../assets/images/map.jpeg"
+import packageJson from "../../package.json"
 
 // Define the interface for the props received by the Modal component.
 interface ModalProps {
@@ -22,7 +23,7 @@ const Modal: React.FC<ModalProps> = ({ hideModal }) => {
       <div className="modal-wrapper">
         <div className="modal-header">
           <h2>WeatherForecastApp</h2>
-          <p>Version 1.0.0</p>
+          <p>Version {packageJson.version}</p>
         </div>
 
         <div className="modal-content">

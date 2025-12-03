@@ -36,7 +36,6 @@ describe("Dashboard", () => {
     const btnHideModal = screen.getByTestId("hide-modal-btn") // <button data-testid="hide-modal-btn" onClick={() => dispatch(actionAsyncThunk)}> // await API.get
     expect(btnHideModal).toBeVisible()
 
-    // eslint-disable-next-line testing-library/no-unnecessary-act
     await act(async () => {
       await fireEvent.click(btnHideModal)
     })
@@ -104,7 +103,6 @@ describe("Search", () => {
 
     fireEvent.change(searchInput, { target: { value: "Rotterdam" } })
 
-    // eslint-disable-next-line testing-library/no-unnecessary-act
     await act(async () => {
       await fireEvent.click(searchButton)
     })

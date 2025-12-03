@@ -42,7 +42,7 @@ const CurrentWidget: React.FC = () => {
     <>
       <div className="widget weather-detail">
         <div className="widget-actions">
-          <div className="icons-container" title="Reset">
+          <div className="icons-container" title="Reset" hidden>
             <img
               onClick={resetApp}
               className="current-widget-icon"

@@ -48,7 +48,7 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
   }
 
   // Get user's geographic position
-  const getGeoPositon = async () => {
+  const getGeoPosition = async () => {
     // Check if lat & lon are present in the URL
     if (
       Utils.getURLParam(Constants.URL_PARAM_LAT) &&
@@ -66,15 +66,15 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
     if (positionLocalStorage !== null) {
       setLat(positionLocalStorage.lat)
       setLon(positionLocalStorage.lon)
+      return
     }
 
+    // If no stored position, request browser geolocation
     try {
       const { latitude, longitude } = await Utils.getBrowserGeoPosition()
-      if (!positionLocalStorage) {
-        setLat(latitude)
-        setLon(longitude)
-        Utils.savePosition(latitude, longitude)
-      }
+      setLat(latitude)
+      setLon(longitude)
+      Utils.savePosition(latitude, longitude)
     } catch (error) {
       if (error instanceof Error && error.message) {
         setError(String(error.message))
@@ -85,7 +85,7 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
   }
 
   useEffect(() => {
-    getGeoPositon()
+    getGeoPosition()
   }, [])
 
   // Fetch data on lat and lon change
